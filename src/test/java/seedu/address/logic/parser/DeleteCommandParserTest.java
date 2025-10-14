@@ -6,8 +6,9 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.Name;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
@@ -21,13 +22,19 @@ public class DeleteCommandParserTest {
     private DeleteCommandParser parser = new DeleteCommandParser();
 
     @Test
-    public void parse_validArgs_returnsDeleteCommand() {
-        Phone phone = new Phone("83556666");
-        assertParseSuccess(parser, phone.value, new DeleteCommand(phone));
+    public void parse_validName_returnsDeleteCommand() {
+        Name name = new Name("Alice Pauline");
+        assertParseSuccess(parser, name.fullName, new DeleteCommand(name));
+    }
+
+    @Test
+    public void parse_validIndex_returnsDeleteCommand() {
+        Index index = Index.fromOneBased(1);
+        assertParseSuccess(parser, "1", new DeleteCommand(index));
     }
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
 }
