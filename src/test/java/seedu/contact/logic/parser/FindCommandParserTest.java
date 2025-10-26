@@ -1,16 +1,16 @@
-package seedu.address.logic.parser;
+package seedu.contact.logic.parser;
 
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.contact.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.contact.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.contact.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.contact.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.model.person.NameOrCompanyPredicate;
+import seedu.contact.logic.commands.FindCommand;
+import seedu.contact.model.person.NameOrCompanyPredicate;
 
 /**
  * Unit tests for {@code FindCommandParser}.

@@ -1,12 +1,12 @@
-package seedu.address.logic.parser;
+package seedu.contact.logic.parser;
 
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.contact.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Optional;
 
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameOrCompanyPredicate;
+import seedu.contact.logic.commands.FindCommand;
+import seedu.contact.logic.parser.exceptions.ParseException;
+import seedu.contact.model.person.NameOrCompanyPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object.

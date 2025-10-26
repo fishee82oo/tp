@@ -1,23 +1,23 @@
-package seedu.address.logic.commands;
+package seedu.contact.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BENSON;
-import static seedu.address.testutil.TypicalPersons.CARL;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.contact.logic.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
+import static seedu.contact.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.contact.testutil.TypicalPersons.ALICE;
+import static seedu.contact.testutil.TypicalPersons.BENSON;
+import static seedu.contact.testutil.TypicalPersons.CARL;
+import static seedu.contact.testutil.TypicalPersons.getTypicalContactBook;
 
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.person.NameOrCompanyPredicate;
+import seedu.contact.model.Model;
+import seedu.contact.model.ModelManager;
+import seedu.contact.model.UserPrefs;
+import seedu.contact.model.person.NameOrCompanyPredicate;
 
 /**
  * Integration tests (interaction with the Model) for {@code FindCommand}.
@@ -25,8 +25,8 @@ import seedu.address.model.person.NameOrCompanyPredicate;
  */
 public class FindCommandTest {
 
-    private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private final Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalContactBook(), new UserPrefs());
+    private final Model expectedModel = new ModelManager(getTypicalContactBook(), new UserPrefs());
 
     @Test
     public void equals() {

@@ -1,15 +1,15 @@
-package seedu.address.logic.parser;
+package seedu.contact.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_FIELD;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalPersons.JADON;
+import static seedu.contact.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.contact.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.contact.logic.parser.CliSyntax.PREFIX_FIELD;
+import static seedu.contact.logic.parser.CliSyntax.PREFIX_ORDER;
+import static seedu.contact.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.contact.testutil.Assert.assertThrows;
+import static seedu.contact.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.contact.testutil.TypicalPersons.JADON;
 
 import java.util.Arrays;
 import java.util.List;
@@ -17,31 +17,31 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FilterCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.SortCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameOrCompanyPredicate;
-import seedu.address.model.person.Person;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.tag.TagsContainTagPredicate;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
-import seedu.address.testutil.PersonBuilder;
-import seedu.address.testutil.PersonUtil;
+import seedu.contact.logic.commands.AddCommand;
+import seedu.contact.logic.commands.ClearCommand;
+import seedu.contact.logic.commands.DeleteCommand;
+import seedu.contact.logic.commands.EditCommand;
+import seedu.contact.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.contact.logic.commands.ExitCommand;
+import seedu.contact.logic.commands.FilterCommand;
+import seedu.contact.logic.commands.FindCommand;
+import seedu.contact.logic.commands.HelpCommand;
+import seedu.contact.logic.commands.ListCommand;
+import seedu.contact.logic.commands.SortCommand;
+import seedu.contact.logic.parser.exceptions.ParseException;
+import seedu.contact.model.person.NameOrCompanyPredicate;
+import seedu.contact.model.person.Person;
+import seedu.contact.model.tag.Tag;
+import seedu.contact.model.tag.TagsContainTagPredicate;
+import seedu.contact.testutil.EditPersonDescriptorBuilder;
+import seedu.contact.testutil.PersonBuilder;
+import seedu.contact.testutil.PersonUtil;
 /**
- * Integration tests for {@code AddressBookParser}.
+ * Integration tests for {@code contactBookParser}.
  */
 public class CompanyBookParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final ContactBookParser parser = new ContactBookParser();
 
     @Test
     public void parseCommand_add() throws Exception {

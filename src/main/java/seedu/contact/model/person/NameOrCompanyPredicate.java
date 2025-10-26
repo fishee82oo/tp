@@ -1,9 +1,9 @@
-package seedu.address.model.person;
+package seedu.contact.model.person;
 
 import java.util.Optional;
 import java.util.function.Predicate;
 
-import seedu.address.commons.util.StringUtil;
+import seedu.contact.commons.util.StringUtil;
 
 /**
  * Tests that a {@code Person}'s name or company contains the given keyword(s).

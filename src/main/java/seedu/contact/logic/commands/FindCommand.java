@@ -1,11 +1,11 @@
-package seedu.address.logic.commands;
+package seedu.contact.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.logic.Messages;
-import seedu.address.model.Model;
-import seedu.address.model.person.NameOrCompanyPredicate;
+import seedu.contact.commons.util.ToStringBuilder;
+import seedu.contact.logic.Messages;
+import seedu.contact.model.Model;
+import seedu.contact.model.person.NameOrCompanyPredicate;
 
 /**
  * Finds and lists all persons in address book whose names or companies match the given keywords.
