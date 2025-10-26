@@ -60,8 +60,8 @@ public class JsonContactBookStorage implements ContactBookStorage {
     }
 
     @Override
-    public void saveContactBook(ReadOnlyContactBook ContactBook) throws IOException {
-        saveContactBook(ContactBook, filePath);
+    public void saveContactBook(ReadOnlyContactBook contactBook) throws IOException {
+        saveContactBook(contactBook, filePath);
     }
 
     /**
