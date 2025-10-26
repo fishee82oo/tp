@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.contact.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.contact.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.contact.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.contact.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.contact.testutil.TypicalPersons.getTypicalContactBook;
 
 import java.util.Comparator;
 
@@ -42,7 +42,7 @@ public class SortCommandTest {
                                                  .orElse(""));
     private static final Comparator<Person> TAGS_DESCENDING_COMPARATOR = TAGS_ASCENDING_COMPARATOR.reversed();
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalContactBook(), new UserPrefs());
     private Model expectedModel = new ModelManager(model.getContactBook(), new UserPrefs());
 
     @Test

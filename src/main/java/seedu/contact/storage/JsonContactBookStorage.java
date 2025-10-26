@@ -69,12 +69,12 @@ public class JsonContactBookStorage implements ContactBookStorage {
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveContactBook(ReadOnlyContactBook ContactBook, Path filePath) throws IOException {
-        requireNonNull(ContactBook);
+    public void saveContactBook(ReadOnlyContactBook contactBook, Path filePath) throws IOException {
+        requireNonNull(contactBook);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableContactBook(ContactBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableContactBook(contactBook), filePath);
     }
 
 }

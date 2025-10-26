@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.contact.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -7,7 +7,7 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.testutil.PersonBuilder;
+import seedu.contact.testutil.PersonBuilder;
 
 /**
  * Unit tests for {@code NameOrCompanyPredicate}.
