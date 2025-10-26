@@ -1,49 +1,50 @@
-package seedu.contact.logic.parser;
+package seedu.address.logic.parser;
 
-import static seedu.contact.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.contact.logic.commands.CommandTestUtil.COMPANY_DESC_AMY;
-import static seedu.contact.logic.commands.CommandTestUtil.COMPANY_DESC_BOB;
-import static seedu.contact.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-import static seedu.contact.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
-import static seedu.contact.logic.commands.CommandTestUtil.INVALID_COMPANY_DESC;
-import static seedu.contact.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
-import static seedu.contact.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
-import static seedu.contact.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
-import static seedu.contact.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static seedu.contact.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.contact.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
-import static seedu.contact.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
-import static seedu.contact.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-import static seedu.contact.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
-import static seedu.contact.logic.commands.CommandTestUtil.VALID_COMPANY_AMY;
-import static seedu.contact.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
-import static seedu.contact.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.contact.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
-import static seedu.contact.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.contact.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.contact.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.contact.logic.parser.CliSyntax.PREFIX_COMPANY;
-import static seedu.contact.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.contact.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.contact.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.contact.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.contact.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.contact.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.contact.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.contact.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.COMPANY_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.COMPANY_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_COMPANY_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.contact.commons.core.index.Index;
-import seedu.contact.logic.Messages;
-import seedu.contact.logic.commands.EditCommand;
-import seedu.contact.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.contact.model.person.Company;
-import seedu.contact.model.person.Email;
-import seedu.contact.model.person.Name;
-import seedu.contact.model.person.Phone;
-import seedu.contact.model.tag.Tag;
-import seedu.contact.testutil.EditPersonDescriptorBuilder;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Messages;
+import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.model.person.Company;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
+import seedu.address.model.tag.Tag;
+import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 public class EditCommandParserTest {
 
@@ -73,6 +74,15 @@ public class EditCommandParserTest {
 
         // invalid prefix being parsed as preamble (index specified, but no valid fields)
         assertParseFailure(parser, "1 i/ string", EditCommand.MESSAGE_NOT_EDITED);
+    }
+
+    @Test
+    public void parse_zeroIndex_failure() {
+        // exactly zero should be treated as invalid index, not name-based
+        assertParseFailure(parser, "0" + PHONE_DESC_AMY, MESSAGE_INVALID_INDEX);
+        assertParseFailure(parser, "  0  " + PHONE_DESC_AMY, MESSAGE_INVALID_INDEX);
+        assertParseFailure(parser, "0", MESSAGE_INVALID_INDEX);
+        assertParseFailure(parser, "   0   ", MESSAGE_INVALID_INDEX);
     }
 
     @Test
@@ -213,7 +223,7 @@ public class EditCommandParserTest {
                 parser,
                 userInput,
                 Messages.getErrorMessageForDuplicatePrefixes(
-                        seedu.contact.logic.parser.CliSyntax.PREFIX_NAME
+                        seedu.address.logic.parser.CliSyntax.PREFIX_NAME
                 )
         );
     }

@@ -65,4 +65,25 @@ public class StringUtil {
             return false;
         }
     }
+
+    /**
+     * Returns true if the {@code sentence} contains the {@code word} as a substring,
+     * ignoring case. Returns false otherwise.
+     * <br>Examples:<pre>
+     * containsIgnoreCase("Alice Bob", "ali") == true
+     * containsIgnoreCase("Alice Bob", "ICE") == true
+     * containsIgnoreCase("Alice Bob", "bo") == true
+     * containsIgnoreCase("Alice Bob", "carol") == false
+     * </pre>
+     * @param sentence The string to be searched.
+     * @param word The query substring to match.
+     */
+    public static boolean containsIgnoreCase(String sentence, String word) {
+        requireNonNull(sentence);
+        requireNonNull(word);
+        String lowerSentence = sentence.toLowerCase();
+        String lowerWord = word.toLowerCase();
+        return lowerSentence.contains(lowerWord);
+    }
+
 }

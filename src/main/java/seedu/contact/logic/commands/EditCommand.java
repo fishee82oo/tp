@@ -55,7 +55,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the contact book.";
     public static final String MESSAGE_MULTIPLE_MATCHING_PERSONS =
             "There are multiple contacts’ names matched with the reference.\n"
-            + "Please use the edit /index {index} to specify the contact you want to edit "
+            + "Please use 'edit INDEX' to specify the contact you want to edit "
             + "in the following list of matched contacts.";
     public static final String MESSAGE_PERSON_NAME_NOT_FOUND =
             "The person name provided does not match any displayed contact.";

@@ -1,45 +1,47 @@
-package seedu.contact.logic.parser;
+package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.contact.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.contact.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.contact.logic.parser.CliSyntax.PREFIX_FIELD;
-import static seedu.contact.logic.parser.CliSyntax.PREFIX_ORDER;
-import static seedu.contact.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.contact.testutil.Assert.assertThrows;
-import static seedu.contact.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.contact.testutil.TypicalPersons.JADON;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FIELD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalPersons.JADON;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.contact.logic.commands.AddCommand;
-import seedu.contact.logic.commands.ClearCommand;
-import seedu.contact.logic.commands.DeleteCommand;
-import seedu.contact.logic.commands.EditCommand;
-import seedu.contact.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.contact.logic.commands.ExitCommand;
-import seedu.contact.logic.commands.FilterCommand;
-import seedu.contact.logic.commands.FindCommand;
-import seedu.contact.logic.commands.HelpCommand;
-import seedu.contact.logic.commands.ListCommand;
-import seedu.contact.logic.commands.SortCommand;
-import seedu.contact.logic.parser.exceptions.ParseException;
-import seedu.contact.model.person.NameContainsKeywordsPredicate;
-import seedu.contact.model.person.Person;
-import seedu.contact.model.tag.Tag;
-import seedu.contact.model.tag.TagsContainTagPredicate;
-import seedu.contact.testutil.EditPersonDescriptorBuilder;
-import seedu.contact.testutil.PersonBuilder;
-import seedu.contact.testutil.PersonUtil;
-
+import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FilterCommand;
+import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.SortCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.NameOrCompanyPredicate;
+import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.TagsContainTagPredicate;
+import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.PersonUtil;
+/**
+ * Integration tests for {@code AddressBookParser}.
+ */
 public class CompanyBookParserTest {
 
-    private final ContactBookParser parser = new ContactBookParser();
+    private final AddressBookParser parser = new AddressBookParser();
 
     @Test
     public void parseCommand_add() throws Exception {
@@ -66,7 +68,8 @@ public class CompanyBookParserTest {
         Person person = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+                + INDEX_FIRST_PERSON.getOneBased() + " "
+                + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 
@@ -77,11 +80,30 @@ public class CompanyBookParserTest {
     }
 
     @Test
-    public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+    public void parseCommand_findName_success() throws Exception {
+        // find n/Alice
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+                FindCommand.COMMAND_WORD + " n/Alice");
+        assertEquals(new FindCommand(
+                new NameOrCompanyPredicate(Optional.of("Alice"), Optional.empty())), command);
+    }
+
+    @Test
+    public void parseCommand_findCompany_success() throws Exception {
+        // find c/Google
+        FindCommand command = (FindCommand) parser.parseCommand(
+                FindCommand.COMMAND_WORD + " c/Google");
+        assertEquals(new FindCommand(
+                new NameOrCompanyPredicate(Optional.empty(), Optional.of("Google"))), command);
+    }
+
+    @Test
+    public void parseCommand_findBoth_success() throws Exception {
+        // find n/Alice c/Google
+        FindCommand command = (FindCommand) parser.parseCommand(
+                FindCommand.COMMAND_WORD + " n/Alice c/Google");
+        assertEquals(new FindCommand(
+                new NameOrCompanyPredicate(Optional.of("Alice"), Optional.of("Google"))), command);
     }
 
     @Test
@@ -113,12 +135,14 @@ public class CompanyBookParserTest {
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
-        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-                -> parser.parseCommand(""));
+        assertThrows(ParseException.class,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), () ->
+                        parser.parseCommand(""));
     }
 
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
+        assertThrows(ParseException.class,
+                MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
     }
 }

@@ -79,7 +79,7 @@
     </VBox>
 
     <VBox alignment="CENTER_RIGHT" minHeight="105" GridPane.columnIndex="3" GridPane.halignment="RIGHT">
-      <padding><Insets right="15"/></padding>
+      <padding><Insets right="2"/></padding>
       <FlowPane fx:id="tags" orientation="HORIZONTAL" alignment="TOP_RIGHT"/>
     </VBox>
 
