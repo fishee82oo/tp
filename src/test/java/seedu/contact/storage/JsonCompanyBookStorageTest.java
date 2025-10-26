@@ -94,10 +94,10 @@ public class JsonCompanyBookStorageTest {
     /**
      * Saves {@code ContactBook} at the specified {@code filePath}.
      */
-    private void saveContactBook(ReadOnlyContactBook ContactBook, String filePath) {
+    private void saveContactBook(ReadOnlyContactBook contactBook, String filePath) {
         try {
             new JsonContactBookStorage(Paths.get(filePath))
-                    .saveContactBook(ContactBook, addToTestDataPathIfNotNull(filePath));
+                    .saveContactBook(contactBook, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }
