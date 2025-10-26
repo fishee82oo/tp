@@ -18,7 +18,7 @@ public class SortCommand extends Command {
 
     public static final String COMMAND_WORD = "sort";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": sorts all persons in contact book "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": sorts all persons in contact list "
             + "based on the sorting comparator passed in.\n"
             + "Parameters: f/[FIELD] o/[ORDER]\n"
             + "Example: " + COMMAND_WORD + " f/name o/asc\n"
@@ -55,7 +55,7 @@ public class SortCommand extends Command {
 
         logger.info("Sort command executed successfully. "
                 + "Sorted by " + field + " in " + getOrderFullFormat() + " order");
-        return new CommandResult(String.format(MESSAGE_SUCCESS, field, getOrderFullFormat()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, field.toLowerCase(), getOrderFullFormat()));
     }
 
     @Override
@@ -116,13 +116,13 @@ public class SortCommand extends Command {
      * @return String containing the full format of the order
      */
     private String getOrderFullFormat() {
-        switch (order) {
+        switch (order.toLowerCase()) {
         case "asc":
             return "ascending";
         case "desc":
             return "descending";
         default:
-            return order;
+            return order.toLowerCase();
         }
     }
 }

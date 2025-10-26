@@ -75,6 +75,7 @@ public class FilterCommandParser implements Parser<FilterCommand> {
         }
 
         boolean containsEmptyTag = argMultimap.getAllValues(PREFIX_TAG).stream()
+                                              .map(tagName -> tagName.trim())
                                               .anyMatch(tagName -> tagName.isEmpty());
 
         if (containsEmptyTag) {

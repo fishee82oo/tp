@@ -98,8 +98,8 @@ public class PersonCardTest {
                 Label company = getPrivateField(card, "company", Label.class);
                 Label email = getPrivateField(card, "email", Label.class);
                 FlowPane tagPane = getPrivateField(card, "tags", FlowPane.class);
-                ImageView phoneCopyIcon = getPrivateField(card, "phoneCopyIcon", ImageView.class);
-                ImageView emailCopyIcon = getPrivateField(card, "emailCopyIcon", ImageView.class);
+                ImageView phoneIcon = getPrivateField(card, "phoneIcon", ImageView.class);
+                ImageView emailIcon = getPrivateField(card, "emailIcon", ImageView.class);
 
                 // Check displayed fields
                 assertEquals("1. ", id.getText());
@@ -110,9 +110,9 @@ public class PersonCardTest {
                 assertEquals("linghui@nus.edu.sg", email.getText());
                 assertTrue(email.isVisible());
 
-                // Copy icons visible
-                assertTrue(phoneCopyIcon.isVisible());
-                assertTrue(emailCopyIcon.isVisible());
+                // Original icons visible
+                assertTrue(phoneIcon.isVisible());
+                assertTrue(emailIcon.isVisible());
 
                 // Clicking copy icons updates system clipboard
                 Clipboard clipboard = Clipboard.getSystemClipboard();
@@ -121,13 +121,13 @@ public class PersonCardTest {
                 // Phone copy
                 content.putString("");
                 clipboard.setContent(content);
-                phoneCopyIcon.getOnMouseClicked().handle(null);
+                phoneIcon.getOnMouseClicked().handle(null);
                 assertEquals(phone.getText(), clipboard.getString());
 
                 // Email copy
                 content.putString("");
                 clipboard.setContent(content);
-                emailCopyIcon.getOnMouseClicked().handle(null);
+                emailIcon.getOnMouseClicked().handle(null);
                 assertEquals(email.getText(), clipboard.getString());
 
                 // Verify tag sorting (alphabetical)
@@ -161,12 +161,12 @@ public class PersonCardTest {
             try {
                 Label company = getPrivateField(card, "company", Label.class);
                 Label email = getPrivateField(card, "email", Label.class);
-                ImageView emailCopyIcon = getPrivateField(card, "emailCopyIcon", ImageView.class);
+                ImageView emailIcon = getPrivateField(card, "emailIcon", ImageView.class);
 
                 assertFalse(company.isVisible());
                 assertFalse(email.isVisible());
-                assertFalse(emailCopyIcon.isVisible());
-                assertFalse(emailCopyIcon.isManaged());
+                assertFalse(emailIcon.isVisible());
+                assertFalse(emailIcon.isManaged());
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }

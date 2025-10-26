@@ -28,7 +28,7 @@ public class DeleteCommand extends Command {
             + "If multiple persons share the same name, they will be listed automatically."
             + " Delete the intended contact using its index.";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: \n%1$s";
     public static final String MESSAGE_MULTIPLE_PERSONS_WITH_NAME =
             "Multiple persons named %1$s found. Please specify the index to delete.";
 

@@ -306,17 +306,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | sales / procurement professional | add a contact with just a name and phone number                          | not lose time during meetings and can fill in the details later when convenient         |
 | `* * *`  | sales / procurement professional | record multiple contact methods when adding a new contact                | have multiple channels for communication                                                |
 | `* * *`  | sales / procurement professional | assign category tags when I add new customers (e.g company)              | better manage different types of clients by knowing their industry                      |
-| `* * *`  | sales / procurement professional | delete a contact in my company book                                      | remove contacts that are no longer a prospect                                           |
-| `* * *`  | sales / procurement professional | list all contacts in my company book                                     | access all contact records to manage sales and procurement activities                   |
-| `* * *`  | sales / procurement professional | sort my contacts based on a field (e.g name, contact number, etc)        | view relevant clients easily or rank clients easily                                     |
+| `* * *`  | sales / procurement professional | delete a contact in my contact list                                      | remove contacts that are no longer a prospect                                           |
+| `* * *`  | sales / procurement professional | list all contacts in my contact list                                     | access all contact records to manage sales and procurement activities                   |
+| `* * *`  | sales / procurement professional | sort my contacts based on a field (e.g name, tags)                       | view relevant clients easily or rank clients easily                                     |
 | `* * *`  | sales / procurement professional | filter my contacts based on each client's tags                           | quickly find relevant clients and manage my outreach more efficiently                   |
 | `* * *`  | sales / procurement professional | access the application offline without internet                          | view and manage my contacts even without internet connectivity                          |
-| `* * *`  | forgetful user                   | know if there is any contact with the same information or contact number | prevent any duplicate entries in my company book                                        |
-| `* * *`  | forgetful user                   | be able to do a fuzzy search for customers                               | still find customers information even if I only remember part of the information        |
+| `* * *`  | forgetful user                   | know if there is any contact with the same information or contact number | prevent any duplicate entries in my contact list                                        |
+| `* * *`  | forgetful user                   | be able to do a fuzzy search for customer information                    | find customer's information even if I only remember part of their information           |
 | `* *`    | lazy user                        | be able to edit an existing contact                                      | edit existing contact information directly, without removing and recreating the contact |
-| `* *`    | careless user                    | navigate through my past commands                                        | reduce time spent retyping my previous commands in case of any mistakes                 |
-
-*{More to be added}*
+| `* *`    | careless user                    | be able to navigate through my past commands                             | reduce time spent retyping my previous commands in case of any mistakes                 |
 
 ### Use cases
 

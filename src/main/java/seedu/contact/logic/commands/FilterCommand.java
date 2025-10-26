@@ -1,13 +1,14 @@
-package seedu.contact.logic.commands;
+package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
 import java.util.logging.Logger;
 
-import seedu.contact.commons.core.LogsCenter;
-import seedu.contact.logic.Messages;
-import seedu.contact.model.Model;
-import seedu.contact.model.tag.TagsContainTagPredicate;
+import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.Messages;
+import seedu.address.model.Model;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.TagsContainTagPredicate;
 
 /**
  * Filters and lists all persons in the contact book whose contact information contains any of the tags.
@@ -20,9 +21,9 @@ public class FilterCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Filters all persons whose contact information contains any of "
             + "the specified tags (case-insensitive) and displays them as a list.\n"
-            + "Tags should be alphanumeric.\n"
-            + "Parameters: t/[TAG]...\n"
-            + "Example: " + COMMAND_WORD + " t/ friends t/ colleague";
+            + "Tags should be alphanumeric and at most " + Tag.MAX_LENGTH + " characters long.\n"
+            + "Parameters: t/TAG [t/TAG]...\n"
+            + "Example: " + COMMAND_WORD + " t/ client t/ colleague";
 
     private static final Logger logger = LogsCenter.getLogger(FilterCommand.class);
 

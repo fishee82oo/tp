@@ -47,11 +47,6 @@
         </ImageView>
 
         <Label fx:id="phone" styleClass="cell_med_label" text="$phone" HBox.hgrow="ALWAYS"/>
-        <ImageView fx:id="phoneCopyIcon" fitWidth="12" preserveRatio="true" visible="false">
-          <image>
-            <Image url="@/images/copy.png"/>
-          </image>
-        </ImageView>
       </HBox>
 
     </VBox>
@@ -67,11 +62,6 @@
         </ImageView>
 
         <Label fx:id="email" styleClass="cell_small_label" text="$email" HBox.hgrow="ALWAYS"/>
-        <ImageView fx:id="emailCopyIcon" fitWidth="12" preserveRatio="true" visible="false">
-          <image>
-            <Image url="@/images/copy.png"/>
-          </image>
-        </ImageView>
       </HBox>
 
       <!--   Company Icon and Number   -->
