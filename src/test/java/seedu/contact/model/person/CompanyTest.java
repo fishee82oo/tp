@@ -15,7 +15,7 @@ public class CompanyTest {
 
     @Test
     public void constructor_invalidContact_throwsIllegalArgumentException() {
-        String invalidAddress = "";
+        String invalidContact = "";
         assertThrows(IllegalArgumentException.class, () -> new Company(invalidContact));
     }
 
