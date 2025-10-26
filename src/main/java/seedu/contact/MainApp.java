@@ -75,15 +75,15 @@ public class MainApp extends Application {
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         logger.info("Using data file : " + storage.getContactBookFilePath());
 
-        Optional<ReadOnlyContactBook> ContactBookOptional;
+        Optional<ReadOnlyContactBook> contactBookOptional;
         ReadOnlyContactBook initialData;
         try {
-            ContactBookOptional = storage.readContactBook();
-            if (!ContactBookOptional.isPresent()) {
+            contactBookOptional = storage.readContactBook();
+            if (!contactBookOptional.isPresent()) {
                 logger.info("Creating a new data file " + storage.getContactBookFilePath()
                         + " populated with a sample ContactBook.");
             }
-            initialData = ContactBookOptional.orElseGet(SampleDataUtil::getSampleContactBook);
+            initialData = contactBookOptional.orElseGet(SampleDataUtil::getSampleContactBook);
         } catch (DataLoadingException e) {
             logger.warning("Data file at " + storage.getContactBookFilePath() + " could not be loaded."
                     + " Will be starting with an empty ContactBook.");
