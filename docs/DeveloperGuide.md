@@ -158,7 +158,7 @@ The `Model` component,
 
 <box type="info" seamless>
 
-**Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+**Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `ContactBook`, which `Person` references. This allows `ContactBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
 <puml src="diagrams/BetterModelClassDiagram.puml" width="450" />
 
@@ -173,7 +173,7 @@ The `Model` component,
 
 The `Storage` component,
 * can save both company book data and user preference data in JSON format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* inherits from both `ContactBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -198,7 +198,7 @@ Sorting is facilitated by `SortCommand` and `SortCommandParser`, following these
 3. **Model update**: `SortCommand` invokes `Model#sortPersons(comparator)` to trigger the sorting operation.
 
 4. **Sorting execution**: The sort operation cascades through:
-    * `Model#sortPersons(comparator)` &rarr; `AddressBook#sortPersons(comparator)` &rarr; `UniquePersonList#sortPersons(comparator)`
+    * `Model#sortPersons(comparator)` &rarr; `ContactBook#sortPersons(comparator)` &rarr; `UniquePersonList#sortPersons(comparator)`
 
 5. **Result**: A `CommandResult` is returned to display the success message to the user.
 
@@ -506,12 +506,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **NFR (Non-Functional Requirement)**: A quality constraint on the system (e.g., performance, portability).
 * **Actor**: The user interacting with FastCard in use cases.
 * **System**: The application under discussion in use cases (i.e., FastCard).
-* **JSON**: Data format used for persistence (e.g., `data/addressbook.json`).
+* **JSON**: Data format used for persistence (e.g., `data/contactbook.json`).
 * **Sample data**: Default contacts provided on first launch to demonstrate core features.
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Home folder**: The directory where the FastCard `.jar` resides; used as the base for `data/` and `preferences.json`.
-* **Data file**: The JSON file at `data/addressbook.json` storing contacts and tags.
+* **Data file**: The JSON file at `data/contactbook.json` storing contacts and tags.
 * **Filtered list**: The subset of contacts currently matching a search or filter, shown in the UI and backed by the model's observable list.
 * **Primary identifier**: The field(s) used to check contact identity (e.g., phone number) to prevent duplicates.
 * **Prefix**: The short marker preceding a field in a command (e.g., `n/`, `p/`, `e/`, `a/`, `t/`).

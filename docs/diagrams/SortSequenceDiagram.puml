@@ -4,7 +4,7 @@ skinparam ArrowFontStyle plain
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":ContactBookParser" as ContactBookParser LOGIC_COLOR
 participant ":SortCommandParser" as SortCommandParser LOGIC_COLOR
 participant "command:SortCommand" as SortCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
@@ -16,17 +16,17 @@ end box
 [-> LogicManager : execute("sort f/name o/asc")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("sort f/name o/asc")
-activate AddressBookParser
+LogicManager -> ContactBookParser : parseCommand("sort f/name o/asc")
+activate ContactBookParser
 
 create SortCommandParser
-AddressBookParser -> SortCommandParser
+ContactBookParser -> SortCommandParser
 activate SortCommandParser
 
-SortCommandParser --> AddressBookParser
+SortCommandParser --> ContactBookParser
 deactivate SortCommandParser
 
-AddressBookParser -> SortCommandParser : parse("f/name o/asc")
+ContactBookParser -> SortCommandParser : parse("f/name o/asc")
 activate SortCommandParser
 
 create SortCommand
@@ -36,14 +36,14 @@ activate SortCommand
 SortCommand --> SortCommandParser : command
 deactivate SortCommand
 
-SortCommandParser --> AddressBookParser : command
+SortCommandParser --> ContactBookParser : command
 deactivate SortCommandParser
 
-SortCommandParser -[hidden]-> AddressBookParser
+SortCommandParser -[hidden]-> ContactBookParser
 destroy SortCommandParser
 
-AddressBookParser --> LogicManager : command
-deactivate AddressBookParser
+ContactBookParser --> LogicManager : command
+deactivate ContactBookParser
 
 LogicManager -> SortCommand : execute()
 activate SortCommand

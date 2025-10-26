@@ -1,14 +1,14 @@
-package seedu.address.logic.commands;
+package seedu.contact.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
 import java.util.logging.Logger;
 
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.Messages;
-import seedu.address.model.Model;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.tag.TagsContainTagPredicate;
+import seedu.contact.commons.core.LogsCenter;
+import seedu.contact.logic.Messages;
+import seedu.contact.model.Model;
+import seedu.contact.model.tag.Tag;
+import seedu.contact.model.tag.TagsContainTagPredicate;
 
 /**
  * Filters and lists all persons in the contact book whose contact information contains any of the tags.

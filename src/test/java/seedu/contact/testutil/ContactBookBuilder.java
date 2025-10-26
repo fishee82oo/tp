@@ -4,7 +4,7 @@ import seedu.contact.model.ContactBook;
 import seedu.contact.model.person.Person;
 
 /**
- * A utility class to help with building Addressbook objects.
+ * A utility class to help with building Contactbook objects.
  * Example usage: <br>
  *     {@code ContactBook ab = new ContactBookBuilder().withPerson("John", "Doe").build();}
  */

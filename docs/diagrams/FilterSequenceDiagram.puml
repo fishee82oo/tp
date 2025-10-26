@@ -4,7 +4,7 @@ skinparam ArrowFontStyle plain
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":ContactBookParser" as ContactBookParser LOGIC_COLOR
 participant ":FilterCommandParser" as FilterCommandParser LOGIC_COLOR
 participant "command:FilterCommand" as FilterCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
@@ -18,17 +18,17 @@ end box
 [-> LogicManager : execute("filter t/friends")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("filter t/friends")
-activate AddressBookParser
+LogicManager -> ContactBookParser : parseCommand("filter t/friends")
+activate ContactBookParser
 
 create FilterCommandParser
-AddressBookParser -> FilterCommandParser
+ContactBookParser -> FilterCommandParser
 activate FilterCommandParser
 
-FilterCommandParser --> AddressBookParser
+FilterCommandParser --> ContactBookParser
 deactivate FilterCommandParser
 
-AddressBookParser -> FilterCommandParser : parse("t/friends")
+ContactBookParser -> FilterCommandParser : parse("t/friends")
 activate FilterCommandParser
 
 create FilterCommand
@@ -38,14 +38,14 @@ activate FilterCommand
 FilterCommand --> FilterCommandParser : command
 deactivate FilterCommand
 
-FilterCommandParser --> AddressBookParser : command
+FilterCommandParser --> ContactBookParser : command
 deactivate FilterCommandParser
 
-FilterCommandParser -[hidden]-> AddressBookParser
+FilterCommandParser -[hidden]-> ContactBookParser
 destroy FilterCommandParser
 
-AddressBookParser --> LogicManager : command
-deactivate AddressBookParser
+ContactBookParser --> LogicManager : command
+deactivate ContactBookParser
 
 LogicManager -> FilterCommand : execute()
 activate FilterCommand
