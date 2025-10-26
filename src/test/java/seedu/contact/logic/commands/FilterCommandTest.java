@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.contact.logic.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.contact.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.contact.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.contact.testutil.TypicalPersons.getTypicalContactBook;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -20,8 +20,8 @@ import seedu.contact.model.tag.TagsContainTagPredicate;
 
 public class FilterCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalContactBook(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalContactBook(), new UserPrefs());
 
     @Test
     public void equals() {
