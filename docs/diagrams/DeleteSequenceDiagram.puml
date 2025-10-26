@@ -5,7 +5,7 @@ skinparam boxPadding 10
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":ContactBookParser" as ContactBookParser LOGIC_COLOR
 participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
 participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
 end box
@@ -17,23 +17,23 @@ end box
 [-> LogicManager : execute("delete KEY")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("delete KEY")
-activate AddressBookParser
+LogicManager -> ContactBookParser : parseCommand("delete KEY")
+activate ContactBookParser
 
 create DeleteCommandParser
-AddressBookParser -> DeleteCommandParser
+ContactBookParser -> DeleteCommandParser
 activate DeleteCommandParser
 
-DeleteCommandParser --> AddressBookParser
+DeleteCommandParser --> ContactBookParser
 deactivate DeleteCommandParser
 
-AddressBookParser -> DeleteCommandParser : parse("KEY")
+ContactBookParser -> DeleteCommandParser : parse("KEY")
 activate DeleteCommandParser
 
 DeleteCommandParser -> DeleteCommandParser : trimmedArgs = args.trim()
 
 alt trimmedArgs is empty
-    DeleteCommandParser --> AddressBookParser : ParseException
+    DeleteCommandParser --> ContactBookParser : ParseException
 else trimmedArgs not empty
     DeleteCommandParser -> DeleteCommandParser : index = ParserUtil.parseIndex(trimmedArgs)
 
@@ -43,7 +43,7 @@ else trimmedArgs not empty
         activate DeleteCommand
         DeleteCommand --> DeleteCommandParser : command
         deactivate DeleteCommand
-        DeleteCommandParser --> AddressBookParser : command
+        DeleteCommandParser --> ContactBookParser : command
     else ParseException from index
         DeleteCommandParser -> DeleteCommandParser : name = ParserUtil.parseName(args)
 
@@ -53,9 +53,9 @@ else trimmedArgs not empty
             activate DeleteCommand
             DeleteCommand --> DeleteCommandParser : command
             deactivate DeleteCommand
-            DeleteCommandParser --> AddressBookParser : command
+            DeleteCommandParser --> ContactBookParser : command
         else name parsing fails
-            DeleteCommandParser --> AddressBookParser : ParseException
+            DeleteCommandParser --> ContactBookParser : ParseException
         end
     end
 end
@@ -63,8 +63,8 @@ end
 deactivate DeleteCommandParser
 
 alt command parsed successfully
-    AddressBookParser --> LogicManager : command
-    deactivate AddressBookParser
+    ContactBookParser --> LogicManager : command
+    deactivate ContactBookParser
 
     LogicManager -> DeleteCommand : execute(model)
     activate DeleteCommand
@@ -87,8 +87,8 @@ alt command parsed successfully
     [<-- LogicManager
     deactivate LogicManager
 else invalid delete arguments
-    AddressBookParser --> LogicManager : ParseException
-    deactivate AddressBookParser
+    ContactBookParser --> LogicManager : ParseException
+    deactivate ContactBookParser
 
     [<-- LogicManager
     deactivate LogicManager

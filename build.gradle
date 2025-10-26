@@ -7,7 +7,7 @@ plugins {
     id 'org.openjfx.javafxplugin' version '0.1.0'
 }
 
-mainClassName = 'seedu.address.Main'
+mainClassName = 'seedu.contact.Main'
 
 sourceCompatibility = JavaVersion.VERSION_17
 targetCompatibility = JavaVersion.VERSION_17
@@ -72,7 +72,7 @@ javafx {
 }
 
 shadowJar {
-    archiveFileName = 'addressbook.jar'
+    archiveFileName = 'FastCard.jar'
 }
 
 run {
