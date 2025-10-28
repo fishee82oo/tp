@@ -15,7 +15,7 @@ public class Tag {
     public static final String MESSAGE_CONSTRAINTS =
             "Tag names should only contain alphanumeric characters, spaces and must be at most "
                     + MAX_LENGTH + " characters. Multiple spaces between words will be standardized";
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}/]+(?: [\\p{Alnum}/]+)*";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}]+(?: [\\p{Alnum}]+)*";
 
     private static final Pattern MULTIPLE_SPACES_PATTERN = Pattern.compile(" +");
 
