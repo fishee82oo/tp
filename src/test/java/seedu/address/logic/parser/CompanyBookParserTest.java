@@ -111,7 +111,7 @@ public class CompanyBookParserTest {
     @Test
     public void parseCommand_sort() throws Exception {
         SortCommand command = (SortCommand) parser.parseCommand(SortCommand.COMMAND_WORD + " "
-                + PREFIX_FIELD + " names " + PREFIX_ORDER + " asc ");
+                + PREFIX_FIELD + "names " + PREFIX_ORDER + "asc");
         assertEquals(new SortCommand("names", "asc"), command);
     }
 

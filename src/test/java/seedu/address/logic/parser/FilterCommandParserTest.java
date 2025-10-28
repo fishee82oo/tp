@@ -28,8 +28,8 @@ public class FilterCommandParserTest {
     public void parse_validArgs_returnsFilterCommand() {
         // no leading and trailing whitespaces
         FilterCommand expectedFilterCommand = new FilterCommand(
-                new TagsContainTagPredicate(Arrays.asList(new Tag("friend"), new Tag("t/delta one sales"))));
-        assertParseSuccess(parser, " " + PREFIX_TAG + "friend " + PREFIX_TAG + "t/delta one sales ",
+                new TagsContainTagPredicate(Arrays.asList(new Tag("friend"), new Tag("delta one sales"))));
+        assertParseSuccess(parser, " " + PREFIX_TAG + "friend " + PREFIX_TAG + "delta one sales ",
                 expectedFilterCommand);
     }
 
@@ -48,6 +48,10 @@ public class FilterCommandParserTest {
         // Whitespace between prefix and tag value
         assertParseFailure(parser, " " + PREFIX_TAG + " friend", expectedResult);
         assertParseFailure(parser, " " + PREFIX_TAG + "  friend", expectedResult);
+
+        // Non-alphanumeric tag content after normalization
+        assertParseFailure(parser, " " + PREFIX_TAG + "/////", expectedResult);
+        assertParseFailure(parser, " " + PREFIX_TAG + "sales/ops", expectedResult);
 
         // Empty tag in a stream of tags
         assertParseFailure(
@@ -68,11 +72,11 @@ public class FilterCommandParserTest {
     @Test
     public void parse_tagsWithRepeatedSpaces_returnsFilterCommand() {
         TagsContainTagPredicate predicate = new TagsContainTagPredicate(Arrays.asList(
-                new Tag("friend network"), new Tag("t/delta one sales")));
+                new Tag("friend network"), new Tag("delta one sales")));
         FilterCommand expectedFilterCommand = new FilterCommand(predicate);
 
         assertParseSuccess(parser,
-                " " + PREFIX_TAG + "friend  network " + PREFIX_TAG + "t/delta   one   sales",
+                " " + PREFIX_TAG + "friend  network " + PREFIX_TAG + "delta   one   sales",
                 expectedFilterCommand);
     }
 
