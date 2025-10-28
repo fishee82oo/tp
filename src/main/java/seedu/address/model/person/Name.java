@@ -12,7 +12,7 @@ public class Name {
     public static final int MAX_LENGTH = 50;
     public static final String MESSAGE_CONSTRAINTS =
             "Names should only contain alphanumeric characters and spaces, and it should not be blank"
-                    + " (maximum " + MAX_LENGTH + " characters)";
+                    + " (maximum " + MAX_LENGTH + " characters after trimming extra spaces.)";
 
     /*
      * The first character of the address must not be a whitespace,

@@ -59,4 +59,15 @@ public class AddCommandBasicParserTest {
         }
     }
 
+    @Test
+    public void parse_whitespaceAfterPrefix_failure() {
+        String userInput = " n/ John p/88880000";
+        try {
+            parser.parse(userInput);
+            assert false : "Expected ParseException to be thrown.";
+        } catch (Exception e) {
+            assert e.getMessage().contains("Invalid command format");
+        }
+    }
+
 }

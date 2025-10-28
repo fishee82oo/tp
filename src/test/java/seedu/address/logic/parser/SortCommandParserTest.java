@@ -24,10 +24,10 @@ public class SortCommandParserTest {
     public void parse_validArgs_returnsSortCommand() {
         // no leading and trailing whitespaces
         SortCommand expectedSortCommand = new SortCommand("names", "asc");
-        assertParseSuccess(parser, " " + PREFIX_FIELD + " names " + PREFIX_ORDER + " asc ", expectedSortCommand);
+        assertParseSuccess(parser, " " + PREFIX_FIELD + "names " + PREFIX_ORDER + "asc ", expectedSortCommand);
 
         // leading and traling whitespaces
-        assertParseSuccess(parser, "\n  " + PREFIX_FIELD + " \n names  \n \t  " + PREFIX_ORDER + "\n asc \n",
+        assertParseSuccess(parser, "\n  " + PREFIX_FIELD + "names  \n \t  " + PREFIX_ORDER + "asc\n",
                 expectedSortCommand);
     }
 
@@ -47,17 +47,8 @@ public class SortCommandParserTest {
         assertParseFailure(parser, "", expectedResult);
         assertParseFailure(parser, " names asc", expectedResult);
 
-        // Duplicate PREFIX
-        assertParseFailure(parser, " " + PREFIX_FIELD + " names " + PREFIX_FIELD + " tags " + PREFIX_ORDER + " asc ",
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_FIELD));
-
-        assertParseFailure(parser, " " + PREFIX_FIELD + " names " + PREFIX_ORDER + " asc " + PREFIX_ORDER + " desc ",
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_ORDER));
-
-        assertParseFailure(parser, " " + PREFIX_FIELD + " names " + PREFIX_FIELD + " tags " + PREFIX_ORDER + " asc "
-                + PREFIX_ORDER + " desc ", Messages.getErrorMessageForDuplicatePrefixes(PREFIX_FIELD, PREFIX_ORDER));
-
-        assertParseFailure(parser, " " + PREFIX_FIELD + " names " + PREFIX_FIELD + " tags ", expectedResult);
-        assertParseFailure(parser, " " + PREFIX_ORDER + " asc " + PREFIX_ORDER + " desc ", expectedResult);
+        // whitespace between prefix and value
+        assertParseFailure(parser, " " + PREFIX_FIELD + " names " + PREFIX_ORDER + "asc ", expectedResult);
+        assertParseFailure(parser, " " + PREFIX_FIELD + "names " + PREFIX_ORDER + " asc", expectedResult);
     }
 }

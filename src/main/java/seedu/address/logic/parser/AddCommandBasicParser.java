@@ -34,6 +34,10 @@ public class AddCommandBasicParser implements Parser<AddCommandBasic> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE);
 
+        if (ParserUtil.hasWhitespaceAfterAnyPrefix(args, PREFIX_NAME, PREFIX_PHONE)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommandBasic.MESSAGE_USAGE));
+        }
+
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommandBasic.MESSAGE_USAGE));

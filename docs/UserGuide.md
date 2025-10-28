@@ -336,12 +336,14 @@ Adds a contact with full information including name, phone, email, company, and 
   * **Phone** (`p/`) - At least 3 digits
   * **Email** (`e/`) - Valid email address (e.g., name@company.com)
   * **Company** (`c/`) - Company or organization name
-  * **Tags** (`t/`) - Optional labels like "client", "colleague" or "vendor" (add as many as you want)
+  * **Tags** (`t/`) - Optional unlimited labels like "client", "colleague" or "vendor" (alphanumeric values and spaces are accepted)
 
 **What you need to know:**
   * The combination of name **AND** phone number must be unique (similar to `addbasic`)
   * All fields except tags are required
   * Add multiple tags by repeating `t/` (e.g., `t/client t/priority`)
+  * Make sure there is no space between the field prefix and its value (e.g. `n/ Jadon` is not allowed)
+  * Extra spaces between words (if applicable) will be trimmed into 1 block of blank
 
 **When to use this:**
   * You have all contact information ready to enter.
@@ -568,7 +570,7 @@ Shows only contacts that have specific tags - perfect for viewing contacts by ca
   * You should only specify tags (specifying other parameters is invalid e.g., `filter t/colleague n/John`)
   * You may list the tags in any order.
   * The exact tag name must match (e.g., `client` won't find contacts tagged with `clients`)
-  * Tags specified must be alphanumeric (spaces between words are accepted while trailing white spaces will be trimmed, e.g. Credit   Sales -> Credit Sales) and at most 30 characters
+  * Tags specified must be alphanumeric (spaces between words are accepted while trailing white spaces will be trimmed, e.g. Credit   Sales -> Credit Sales) and at most 30 characters (after trimming)
   * Leading and trailing whitespaces are trimmed
   * If no contacts contain any of the specified tags, an empty contact list will be shown
   * The global contact list shown by `list` command will be filtered, and not the currently displayed contact list

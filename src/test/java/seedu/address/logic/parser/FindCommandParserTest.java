@@ -32,6 +32,10 @@ public class FindCommandParserTest {
         FindCommand expectedCommandCaseInsensitive =
                 new FindCommand(new NameOrCompanyPredicate(Optional.of("aLiCe"), Optional.empty()));
         assertParseSuccess(parser, " n/aLiCe", expectedCommandCaseInsensitive);
+
+        FindCommand expectedNormalizedCommand =
+                new FindCommand(new NameOrCompanyPredicate(Optional.of("Alice Bob"), Optional.empty()));
+        assertParseSuccess(parser, " n/Alice   Bob", expectedNormalizedCommand);
     }
 
     @Test
@@ -42,6 +46,10 @@ public class FindCommandParserTest {
 
         assertParseSuccess(parser, " c/Google", expectedCommand);
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + " c/Google", expectedCommand);
+
+        FindCommand expectedNormalizedCompany =
+                new FindCommand(new NameOrCompanyPredicate(Optional.empty(), Optional.of("Google Asia")));
+        assertParseSuccess(parser, " c/Google   Asia", expectedNormalizedCompany);
     }
 
     @Test
@@ -77,6 +85,14 @@ public class FindCommandParserTest {
     public void parse_bothPrefixEmpty_failure() {
         // no prefix and no keyword
         assertParseFailure(parser, "", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_whitespaceAfterPrefix_failure() {
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE);
+        assertParseFailure(parser, " n/ Alice", expectedMessage);
+        assertParseFailure(parser, " c/ Google", expectedMessage);
+        assertParseFailure(parser, " n/Alice c/ Google", expectedMessage);
     }
 
     @Test

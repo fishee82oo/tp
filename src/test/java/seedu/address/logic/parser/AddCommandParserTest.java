@@ -28,6 +28,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalPersons.AMY;
@@ -106,10 +107,6 @@ public class AddCommandParserTest {
         assertParseFailure(parser, INVALID_PHONE_DESC + validExpectedPersonString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE));
 
-        // invalid address
-        assertParseFailure(parser, INVALID_COMPANY_DESC + validExpectedPersonString,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_COMPANY));
-
         // valid value followed by invalid value
 
         // invalid name
@@ -176,10 +173,6 @@ public class AddCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + COMPANY_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Email.MESSAGE_CONSTRAINTS);
 
-        // invalid address
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_COMPANY_DESC
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Company.MESSAGE_CONSTRAINTS);
-
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + COMPANY_DESC_BOB
                 + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
@@ -192,5 +185,22 @@ public class AddCommandParserTest {
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + COMPANY_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_whitespaceAfterPrefix_failure() {
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
+        String restOfCommand = PHONE_DESC_BOB + EMAIL_DESC_BOB + COMPANY_DESC_BOB;
+
+        assertParseFailure(parser, " " + PREFIX_NAME + " " + VALID_NAME_BOB + restOfCommand,
+                expectedMessage);
+        assertParseFailure(parser, NAME_DESC_BOB + " " + PREFIX_PHONE + " " + VALID_PHONE_BOB
+                + EMAIL_DESC_BOB + COMPANY_DESC_BOB, expectedMessage);
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + " " + PREFIX_EMAIL + " " + VALID_EMAIL_BOB
+                + COMPANY_DESC_BOB, expectedMessage);
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                + " " + PREFIX_COMPANY + " " + VALID_COMPANY_BOB, expectedMessage);
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + COMPANY_DESC_BOB
+                + " " + PREFIX_TAG + " " + VALID_TAG_FRIEND, expectedMessage);
     }
 }

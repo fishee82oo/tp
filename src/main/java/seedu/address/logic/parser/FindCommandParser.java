@@ -19,6 +19,10 @@ public class FindCommandParser implements Parser<FindCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_COMPANY);
 
+        if (ParserUtil.hasWhitespaceAfterAnyPrefix(args, CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_COMPANY)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        }
+
         Optional<String> name = argMultimap.getValue(CliSyntax.PREFIX_NAME);
         Optional<String> company = argMultimap.getValue(CliSyntax.PREFIX_COMPANY);
 
@@ -26,11 +30,14 @@ public class FindCommandParser implements Parser<FindCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        if (name.isPresent() && name.get().trim().isEmpty()
-                || company.isPresent() && company.get().trim().isEmpty()) {
+        Optional<String> normalizedName = name.map(ParserUtil::normalizeSpacing);
+        Optional<String> normalizedCompany = company.map(ParserUtil::normalizeSpacing);
+
+        if (normalizedName.isPresent() && normalizedName.get().isEmpty()
+                || normalizedCompany.isPresent() && normalizedCompany.get().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        return new FindCommand(new NameOrCompanyPredicate(name, company));
+        return new FindCommand(new NameOrCompanyPredicate(normalizedName, normalizedCompany));
     }
 }

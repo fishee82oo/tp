@@ -147,6 +147,13 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseCompany_repeatedSpaces_returnsNormalizedCompany() throws Exception {
+        String companyWithRepeatedSpaces = "Google   Asia   Pacific";
+        Company expectedCompany = new Company("Google Asia Pacific");
+        assertEquals(expectedCompany, ParserUtil.parseCompany(companyWithRepeatedSpaces));
+    }
+
+    @Test
     public void parseEmail_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail((String) null));
     }

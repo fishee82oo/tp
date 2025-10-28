@@ -28,12 +28,14 @@ public class CompanyTest {
         assertFalse(Company.isValidCompany("")); // empty string
         assertFalse(Company.isValidCompany(" ")); // spaces only
         assertFalse(Company.isValidCompany(generateString(Company.MAX_LENGTH + 1))); // too long
+        assertFalse(Company.isValidCompany(generateString(Company.MAX_LENGTH) + "  a"));
 
         // valid companies
         assertTrue(Company.isValidCompany("Google"));
         assertTrue(Company.isValidCompany("-")); // one character
         assertTrue(Company.isValidCompany("International Business Machines Corporation")); // long text
         assertTrue(Company.isValidCompany(generateString(Company.MAX_LENGTH))); // boundary length
+        assertTrue(Company.isValidCompany(generateString(Company.MAX_LENGTH) + "    ")); // trailing spaces ignored
     }
 
     @Test

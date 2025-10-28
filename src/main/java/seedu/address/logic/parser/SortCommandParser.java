@@ -29,6 +29,9 @@ public class SortCommandParser implements Parser<SortCommand> {
         logger.fine("Parsing sort command with arguments: " + args);
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_FIELD, PREFIX_ORDER);
+        if (ParserUtil.hasWhitespaceAfterAnyPrefix(args, PREFIX_FIELD, PREFIX_ORDER)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+        }
         checkValidTokens(argMultimap);
 
         String field = argMultimap.getValue(PREFIX_FIELD).orElse("");

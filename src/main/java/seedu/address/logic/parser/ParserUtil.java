@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
@@ -33,6 +35,32 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    private static final Pattern MULTIPLE_WHITESPACE_PATTERN = Pattern.compile("\\s+");
+
+    /**
+     * Collapses repeated whitespace into a single space and trims leading/trailing whitespace.
+     */
+    public static String normalizeSpacing(String value) {
+        requireNonNull(value);
+        String trimmed = value.trim();
+        return MULTIPLE_WHITESPACE_PATTERN.matcher(trimmed).replaceAll(" ");
+    }
+
+    /**
+     * Returns {@code true} if any of the supplied {@code prefixes} in {@code args}
+     * is immediately followed by whitespace.
+     */
+    public static boolean hasWhitespaceAfterAnyPrefix(String args, Prefix... prefixes) {
+        requireNonNull(args);
+        requireNonNull(prefixes);
+        return Stream.of(prefixes).anyMatch(prefix -> hasWhitespaceAfterPrefix(args, prefix));
+    }
+
+    private static boolean hasWhitespaceAfterPrefix(String args, Prefix prefix) {
+        String regex = String.format("(^|\\s)%s\\s", Pattern.quote(prefix.getPrefix()));
+        return Pattern.compile(regex).matcher(args).find();
     }
 
     /**
@@ -73,11 +101,11 @@ public class ParserUtil {
      */
     public static Company parseCompany(String company) throws ParseException {
         requireNonNull(company);
-        String trimmedCompany = company.trim();
-        if (!Company.isValidCompany(trimmedCompany)) {
+        String normalizedCompany = normalizeSpacing(company);
+        if (!Company.isValidCompany(normalizedCompany)) {
             throw new ParseException(Company.MESSAGE_CONSTRAINTS);
         }
-        return new Company(trimmedCompany);
+        return new Company(normalizedCompany);
     }
 
     /**

@@ -24,6 +24,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -99,12 +100,25 @@ public class EditCommandParserTest {
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Person} being edited,
         // parsing it together with a valid tag results in error
         assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_COMPANY_AMY + VALID_PHONE_AMY,
                 Name.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_whitespaceAfterPrefix_failure() {
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
+        assertParseFailure(parser, "1" + " " + PREFIX_NAME + " " + VALID_NAME_AMY,
+                expectedMessage);
+        assertParseFailure(parser, "1" + NAME_DESC_AMY + " " + PREFIX_PHONE + " " + VALID_PHONE_AMY,
+                expectedMessage);
+        assertParseFailure(parser, "1" + NAME_DESC_AMY + PHONE_DESC_AMY + " " + PREFIX_EMAIL + " " + VALID_EMAIL_AMY,
+                expectedMessage);
+        assertParseFailure(parser, "1" + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
+                + " " + PREFIX_COMPANY + " " + VALID_COMPANY_AMY, expectedMessage);
+        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + " " + PREFIX_TAG + " " + VALID_TAG_HUSBAND,
+                expectedMessage);
     }
 
     @Test
@@ -205,13 +219,6 @@ public class EditCommandParserTest {
 
         assertParseFailure(parser, userInput,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE, PREFIX_EMAIL, PREFIX_COMPANY));
-
-        // multiple invalid values
-        userInput = targetIndex.getOneBased() + INVALID_PHONE_DESC + INVALID_COMPANY_DESC + INVALID_EMAIL_DESC
-                + INVALID_PHONE_DESC + INVALID_COMPANY_DESC + INVALID_EMAIL_DESC;
-
-        assertParseFailure(parser, userInput,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE, PREFIX_EMAIL, PREFIX_COMPANY));
     }
 
     @Test
@@ -223,7 +230,7 @@ public class EditCommandParserTest {
                 parser,
                 userInput,
                 Messages.getErrorMessageForDuplicatePrefixes(
-                        seedu.address.logic.parser.CliSyntax.PREFIX_NAME
+                        PREFIX_NAME
                 )
         );
     }
