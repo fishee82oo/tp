@@ -59,7 +59,7 @@ FastCard is a speed-focused contact manager for sales and procurement profession
 
 **❓ Help**
 - [Frequently Asked Questions](#faq)
-- [Known Issues](#known-issues)
+- [Known Issues](#known-Issues)
 - [Command Summary](#command-summary)
 
 <page-nav-print />
@@ -215,7 +215,7 @@ help
 
 </box>
 
-### Viewing all contacts : `list`
+### Viewing All Contacts : `list`
 
 Shows your complete contact list, displaying everyone in FastCard.
 
@@ -229,13 +229,13 @@ Shows your complete contact list, displaying everyone in FastCard.
   * You want to see all of contacts
   * To start fresh before a new search or filter
 
-**Example: Viewing all contacts:**
+**Example: Viewing All Contacts:**
 ```
 list
 ```
 **You'll see:**
 ```
-Listed all persons
+Listed all contacts
 ```
 **In the contact list:**
   * All contacts reappear (any previous filters are removed)
@@ -255,7 +255,7 @@ Listed all persons
   * Expecting `list` to show filtered results &rarr; It shows **ALL** contacts (removes filters)
   * Thinking contacts are deleted when filtered &rarr; They're just hidden; `list` reveals them all
 
-### Adding a contact quickly: `addbasic`
+### Adding a Contact Quickly: `addbasic`
 
 Quickly saves a contact with just their name and phone number - perfect when you meet someone and want to add details later.
 
@@ -358,7 +358,7 @@ add n/Sarah Chen p/98765432 e/sarahchen@example.com c/Shopee t/client t/priority
 ```
 **You'll see:**
 ```
-New person added:
+New contact added:
 Name: Sarah Chen
 Phone: 98765432
 Email: sarahchen@example.com
@@ -452,7 +452,7 @@ edit Alice Tan e/alice@example.com c/Shopee t/client
 ```
 **You'll see:**
 ```
-Edited Person:
+Edited Contact:
 Name: Alice Tan
 Phone: 91234567
 Email: alice@example.com
@@ -509,19 +509,19 @@ Quickly finds contacts whose names include the words you're looking for.
 
 **When to use this:**
   * You remember part of someone's name but not their full details
-  * You want to quickly pull up one person from a large contact list
+  * You want to quickly pull up one contact from a large contact list
   * You're looking for several people at once (by searching multiple names)
   * You need to verify if someone is already in your contacts before adding them
 
 **Examples:**
 
-**Example 1: Finding a specific person**
+**Example 1: Finding a specific contact**
 ```
 find Sarah
 ```
 **You'll see (depending on the number of contacts containing Sarah in their full name):**
 ```
-2 persons listed!
+2 contacts listed!
 ```
 **In the contact list:**
   * Only contacts with "Sarah" in their name are displayed.
@@ -549,7 +549,7 @@ find John Mike Sarah
 **Common mistakes:**
   * `find Han` expecting to find "Hans" &rarr; Partial words don't match (must be complete: `find Hans`)
 
-### Filtering Contacts: `filter`
+### Filtering contacts: `filter`
 
 Shows only contacts that have specific tags - perfect for viewing contacts by category like "client", "vendor", or "priority".
 
@@ -587,7 +587,7 @@ filter t/client
 ```
 **You'll see (depending on the number of contacts with the client tag):**
 ```
-3 persons listed!
+3 contacts listed!
 ```
 **In the contact list:**
   * Only contacts tagged with "client" are displayed
@@ -661,7 +661,7 @@ sort f/name o/asc
 ```
 **You'll see:**
 ```
-Sorted all persons by name in ascending order
+Sorted all contacts by name in ascending order
 ```
 **In the contact list:**
   * Contacts are now alphabetically ordered A&rarr;Z by name
@@ -697,7 +697,7 @@ Permanently removes a contact from FastCard - use with caution as this cannot be
 
 **⚠️ WARNING: Permanent Deletion**
 
-Deleted contacts are **permanently removed** and cannot be recovered. Double-check you're deleting the correct person before pressing Enter.
+Deleted contacts are **permanently removed** and cannot be recovered. Double-check you're deleting the correct contact before pressing Enter.
 
 **Best practice:** Use `find` first to verify contact details before deleting.
 
@@ -745,8 +745,8 @@ delete John Doe
 ```
 **If multiple John Doe exist, you'll see (depending on the number of John Doe contacts):**
 ```
-Multiple persons named John Doe found. Please specify the index to delete.
-2 persons listed!
+Multiple contacts named John Doe found. Please specify the index to delete.
+2 contacts listed!
 ```
 **In the contact list:**
   * Will only show contacts with the name `John Doe`
@@ -768,7 +768,7 @@ Multiple persons named John Doe found. Please specify the index to delete.
   * `delete 0` &rarr; Invalid index (index starts at 1, not 0)
   * `delete 5` when only 3 contacts shown &rarr; Index out of range (must be within displayed list)
 
-### View Details: `view`
+### Viewing details: `view`
 
 Toggles the Detail Pane showing specified user in detail.
 
@@ -784,7 +784,7 @@ Toggles the Detail Pane showing specified user in detail.
 view 1
 ```
 **You'll see:**
-  * (If Focus Person has not been selected yet) -> Shows Unknown.
+  * (If Focus Contact has not been selected yet) -> Shows Unknown.
     - Simply run `view` with an appropriate index to populate the details pane
   * Detail Pane toggle to view (if not already visible)
   * Detail Pane shows information about current target contact
@@ -839,7 +839,7 @@ Permanently deletes every contact from FastCard - use only when starting complet
 **⚠️ WARNING: This permanently deletes ALL contacts from FastCard. This cannot be undone.**
 
 Before using `clear`:
-  * **Backup your data** - Copy the `addressbook.json` file from your FastCard data folder
+  * **Backup your data** - Copy the `fastcard.json` file from your FastCard data folder
   * **Triple-check** - Make absolutely sure you want to erase everything
 
 **Use this command ONLY when:** You're certain you want to start with a completely empty contact list.
@@ -930,7 +930,7 @@ FastCard saves your contacts automatically every time you make a change.
 
 <box type="info" seamless>
 
-Your contact data is stored in a file called `addressbook.json` located in `[JAR file location]/data/`.
+Your contact data is stored in a file called `fastcard.json` located in `[JAR file location]/data/`.
 Advanced users are welcome to update data directly by editing that data file.
 
 **⚠️ WARNING: Manual editing is risky**
@@ -955,10 +955,10 @@ Advanced users are welcome to update data directly by editing that data file.
 
 **Q: How do I transfer my client contacts to another Computer?** <br>
 **A**:
-  1. On your old computer, locate the `addressbook.json` file in `[JAR file location]/data/`.
+  1. On your old computer, locate the `fastcard.json` file in `[JAR file location]/data/`.
   2. Copy this file to the other computer.
   3. Install FastCard on your other computer.
-  4. Replace the new `addressbook.json` file with your copied file.
+  4. Replace the new `fastcard.json` file with your copied file.
   5. Restart FastCard. All your contacts should appear.
 
 **Q: Can I undo a command I just entered?** <br>
@@ -968,7 +968,7 @@ Advanced users are welcome to update data directly by editing that data file.
 **A:** Your data is safe. Since FastCard saves automatically after every change, you'll only lose any command you were typing when it crashed (not the data itself).
 
 **Q: I accidentally deleted a client contact. Can I recover it?** <br>
-**A:** Unfortunately, no. FastCard doesn't have a recycle bin or recovery feature. The contact is permanently deleted. Consider backing up your `addressbook.json` file regularly.
+**A:** Unfortunately, no. FastCard doesn't have a recycle bin or recovery feature. The contact is permanently deleted. Consider backing up your `fastcard.json` file regularly.
 
 **Q: Why isn't my command working?** <br>
 **A:** Common reasons include:
@@ -977,7 +977,7 @@ Advanced users are welcome to update data directly by editing that data file.
   * Typos in the command
 --------------------------------------------------------------------------------------------------------------------
 
-## Known issues
+## Known Issues
 
 **Issues you might encounter**
 

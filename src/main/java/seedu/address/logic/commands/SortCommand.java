@@ -25,7 +25,7 @@ public class SortCommand extends Command {
             + "Valid fields: name, tag\n"
             + "Valid orderings: asc, desc";
 
-    public static final String MESSAGE_SUCCESS = "Sorted all persons by %s in %s order";
+    public static final String MESSAGE_SUCCESS = "Sorted all contacts by %s in %s order";
 
     private static final Logger logger = LogsCenter.getLogger(SortCommand.class);
 

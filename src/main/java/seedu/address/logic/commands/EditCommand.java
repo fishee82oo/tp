@@ -49,7 +49,7 @@ public class EditCommand extends Command {
             + "Example: " + COMMAND_WORD + " John Doe "
             + PREFIX_EMAIL + "john.doe@company.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: \n%1$s";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Contact: \n%1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the contact book.";
     public static final String MESSAGE_MULTIPLE_MATCHING_PERSONS =

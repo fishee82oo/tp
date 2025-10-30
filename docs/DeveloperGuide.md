@@ -28,7 +28,7 @@
     - [Use Cases](#use-cases)
     - [Non-Functional Requirements](#non-functional-requirements)
     - [Glossary](#glossary)
-- [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+- [Appendix: Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
 
 <page-nav-print />
 
@@ -130,7 +130,7 @@ How the `Logic` component works:
 
 1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to delete a person).<br>
+1. The command can communicate with the `Model` when it is executed (e.g. to delete a contact).<br>
    Note that although this is shown as a single step in the diagram above (for simplicity), in the code it can take several interactions (between the command object and the `Model`) to achieve.
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
@@ -314,7 +314,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | forgetful user                   | know if there is any contact with the same information or contact number | prevent any duplicate entries in my contact list                                        |
 | `* * *`  | forgetful user                   | be able to do a fuzzy search for customer information                    | find customer's information even if I only remember part of their information           |
 | `* *`    | lazy user                        | be able to edit an existing contact                                      | edit existing contact information directly, without removing and recreating the contact |
-| `* *`    | efficient user                   | be able to navigate through my past commands                             | save time when adding multiple person with the similar information                      |
+| `* *`    | efficient user                   | be able to navigate through my past commands                             | save time when adding multiple contact with the similar information                      |
 
 ### Use Cases
 
@@ -384,8 +384,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to edit a contact's information
-2.  FastCard looks for person with their phone number
-3.  FastCard updates the person's particulars
+2.  FastCard looks for contact with their phone number
+3.  FastCard updates the contact's particulars
 
     Use case ends.
 
@@ -465,7 +465,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 1.
 
   * 3a. No contacts match the specified tags.
-    * 3a1. FastCard displays an empty list with a count of 0 persons.
+    * 3a1. FastCard displays an empty list with a count of 0 contact.
     Use case ends.
 
 *{More to be added}*
@@ -473,7 +473,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 contacts without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  Should work offline without a need for an external database server.
 5.  Data should be stored in a human editable text file to allow advanced users to manipulate the data directly through the data file.
@@ -506,12 +506,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **NFR (Non-Functional Requirement)**: A quality constraint on the system (e.g., performance, portability).
 * **Actor**: The user interacting with FastCard in use cases.
 * **System**: The application under discussion in use cases (i.e., FastCard).
-* **JSON**: Data format used for persistence (e.g., `data/addressbook.json`).
+* **JSON**: Data format used for persistence (e.g., `data/fastcard.json`).
 * **Sample data**: Default contacts provided on first launch to demonstrate core features.
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Home folder**: The directory where the FastCard `.jar` resides; used as the base for `data/` and `preferences.json`.
-* **Data file**: The JSON file at `data/addressbook.json` storing contacts and tags.
+* **Data file**: The JSON file at `data/fastcard.json` storing contacts and tags.
 * **Filtered list**: The subset of contacts currently matching a search or filter, shown in the UI and backed by the model's observable list.
 * **Primary identifier**: The field(s) used to check contact identity (e.g., phone number) to prevent duplicates.
 * **Prefix**: The short marker preceding a field in a command (e.g., `n/`, `p/`, `e/`, `a/`, `t/`).
@@ -552,11 +552,11 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a Person
+### Deleting a Contact
 
-1.  Deleting a person while all persons are being shown
+1.  Deleting a contact while all contacts are being shown
 
-    -  Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    -  Prerequisites: List all contacts using the `list` command. Multiple contacts in the list.
 
     -  Test case: `delete Alice Pauline`<br>
        Expected: The contact named `Alice Pauline` is deleted when she is the only contact with that name. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
@@ -565,12 +565,12 @@ testers are expected to do more *exploratory* testing.
        Expected: First contact in the currently displayed list is deleted. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
     -  Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+       Expected: No contact is deleted. Error details shown in the status message. Status bar remains the same.
 
     -  Test case: `delete Jadon Ye` when multiple Jadons exist<br>
        Expected: No contact is deleted. FastCard lists the matching contacts so that the user can delete the intended one by index.
 
-    -  Other incorrect delete commands to try: `delete`, `delete x`, `delete Unknown Person`, `...` (where x is larger than the list size)<br>      Expected: Similar to previous.
+    -  Other incorrect delete commands to try: `delete`, `delete x`, `delete Unknown Cerson`, `...` (where x is larger than the list size)<br>      Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 
@@ -581,10 +581,10 @@ testers are expected to do more *exploratory* testing.
     -  Prerequisites: Multiple contacts in the company book with different names.
 
     -  Test case: `sort f/name o/asc`<br>
-       Expected: Contacts are sorted alphabetically by name in ascending order. Success message shows "Sorted all persons by name in ascending order".
+       Expected: Contacts are sorted alphabetically by name in ascending order. Success message shows "Sorted all contacts by name in ascending order".
 
     -  Test case: `sort f/name o/desc`<br>
-       Expected: Contacts are sorted alphabetically by name in descending order. Success message shows "Sorted all persons by name in descending order".
+       Expected: Contacts are sorted alphabetically by name in descending order. Success message shows "Sorted all contacts by name in descending order".
 
     -  Test case: `sort f/name o/ascending`<br>
        Expected: Same as `sort f/name o/asc`.
@@ -625,7 +625,7 @@ testers are expected to do more *exploratory* testing.
     -  Prerequisites: Multiple contacts in the company book, some with the tag "friends", some without.
 
     -  Test case: `filter t/friends`<br>
-       Expected: Only contacts with the "friends" tag are displayed. Status message shows the number of persons listed (e.g., "3 persons listed!").
+       Expected: Only contacts with the "friends" tag are displayed. Status message shows the number of contacts listed (e.g., "3 contacts listed!").
 
     -  Test case: `filter t/FRIENDS`<br>
        Expected: Same as above. Tag matching is case-insensitive.
@@ -648,7 +648,7 @@ testers are expected to do more *exploratory* testing.
     -  Prerequisites: No contacts have the tag "nonexistent".
 
     -  Test case: `filter t/nonexistent`<br>
-       Expected: Empty list is displayed. Status message shows "0 persons listed!".
+       Expected: Empty list is displayed. Status message shows "0 contact listed!".
 
 4. Invalid filter commands
 

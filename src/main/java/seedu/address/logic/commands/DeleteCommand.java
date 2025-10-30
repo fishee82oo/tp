@@ -25,12 +25,12 @@ public class DeleteCommand extends Command {
             + "Parameters: NAME | INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " Alice Pauline\n"
             + "Example: " + COMMAND_WORD + " 1\n"
-            + "If multiple persons share the same name, they will be listed automatically."
+            + "If multiple contacts share the same name, they will be listed automatically."
             + " Delete the intended contact using its index.";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: \n%1$s";
+    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Contact: \n%1$s";
     public static final String MESSAGE_MULTIPLE_PERSONS_WITH_NAME =
-            "Multiple persons named %1$s found. Please specify the index to delete.";
+            "Multiple contacts named %1$s found. Please specify the index to delete.";
 
     private final Name targetName;
     private final Index targetIndex;
