@@ -211,10 +211,6 @@ Sorting is facilitated by `SortCommand` and `SortCommandParser`, following these
 The sequence diagram below shows how the sort operation works:
 <puml src="diagrams/SortSequenceDiagram.puml" width="100%" />
 
-The activity diagram below depicts the execution flow of the sort command:
-<puml src="diagrams/SortActivityDiagram.puml" width="100%" />
-
-
 ### Filter Feature
 The filtering mechanism is facilitated by `FilterCommand` and `FilterCommandParser`, following these steps:
 
@@ -225,7 +221,7 @@ The filtering mechanism is facilitated by `FilterCommand` and `FilterCommandPars
     * Verifies no input exists between "filter" and the first prefix
     * Confirms no empty tags are present
     * Validates all tag names are alphanumeric and at most 30 characters
-
+<br>
 3. **Model update**: `FilterCommand#execute()` invokes `Model#updateFilteredPersonList(predicate)` to apply the filtering operation.
 
 4. **Filtering execution**: The model updates its filtered contact list by applying the `TagsContainTagPredicate`, which matches any contact whose tags contain at least one of the specified tags (case-insensitive matching).
@@ -572,24 +568,34 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
    
   * 1a. User does not provide both field and order parameters.
+
     * 1a1. System shows an error message.
+
       Use case resumes at step 1.
 
   * 1b. User provides input between "sort" and the first prefix.
+
     * 1b1. System shows an error message.
+
       Use case resumes at step 1.
 
   * 1c. User provides duplicate prefixes.
+
     * 1c1. System shows an error message.
+
       Use case resumes at step 1.
 
   * 2a. The provided field is invalid (not "name" or "tag").
+
     * 2a1. System shows an error message.
+
       Use case resumes at step 1.
 
   * 2b. The provided order is invalid (not "asc", "desc", "ascending", or "descending").
+
     * 2b1. System shows an error message.
-    Use case resumes at step 1.
+
+      Use case resumes at step 1.
 
 **Use case UC05 - Filter contacts by tags**
 
@@ -604,24 +610,34 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
   * 1a. User does not provide any tag parameters.
+
     * 1a1. System shows an error message.
+
       Use case resumes at step 1.
 
   * 1b. User provides input between "filter" and the first tag prefix.
+
     * 1b1. System shows an error message.
+
       Use case resumes at step 1.
 
   * 2a. One or more tags are empty.
-    * 2b1. System shows an error message.
+
+    * 2a1. System shows an error message.
+
       Use case resumes at step 1.
-  
+
   * 2b. One or more tags contain non-alphanumeric characters
+
     * 2b1. System shows an error message.
+
       Use case resumes at step 1.
 
   * 3a. No contacts match the specified tags.
+
     * 3a1. System displays an empty list with a count of 0 contact.
-    Use case ends.
+
+      Use case ends.
 
 **Use case: UC06 - List contacts**
 
@@ -1086,3 +1102,6 @@ testers are expected to do more *exploratory* testing.
 ### Appendix: Planned Enhancements
 
 Team size: 5
+
+1. **Make filter error messages more error-specific.**
+Some errors from the filter command can be made more specific. We plan to make the error message mention the reason for the failure (invalid tag, empty tag, etc).

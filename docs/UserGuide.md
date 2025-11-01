@@ -210,7 +210,6 @@ help
 <box type="tip" seamless>
 
    Pro Tips:
-  * **Use `F1` shortcut** - Press `F1` on your keyboard for instant help access without typing
   * **Keep guide bookmarked** - Save the user guide URL in your browser for quick reference
   * **Check before experimenting** - Review command formats in the guide before trying new commands
 
@@ -236,7 +235,7 @@ list
 ```
 **You'll see:**
 ```
-Listed all contacts
+Listed all persons
 ```
 **In the contact list:**
   * All contacts reappear (any previous filters are removed)
