@@ -329,11 +329,11 @@ Adds a contact with full information including name, phone, email, company, and 
     * Instead, you may use `.` or `-` in names if needed (e.g. `Rahul s.o. Kumar`, `Tan-Kumar`).
   * **Phone** (`p/`) - At least 3 digits, at most 20 digits
   * **Email** (`e/`) - Valid email address (e.g., name@company.com)
-    * * We *do not recommend* entering `unknown@example.com`, as it is used internally as an `invisible` placeholder when you do not specify an email for your contact.
-    * * If you enter that specific value, you will not see the field in your FastCard interface.
+    * We **do not recommend** entering `unknown@example.com`, as it is used internally as an `invisible` placeholder when you do not specify an email for your contact.
+    * If you enter that specific value, you will not see the field in your FastCard interface.
   * **Company** (`c/`) - Company or organization name
-    * * We *do not recommend* entering `N/A`, as it is used internally as an `invisible` placeholder when you do not specify an email for your contact.
-    * * If you enter that specific value, you will not see the field in your FastCard interface.
+    * We **do not recommend** entering `N/A`, as it is used internally as an `invisible` placeholder when you do not specify an email for your contact.
+    * If you enter that specific value, you will not see the field in your FastCard interface.
   * **Tags** (`t/`) - Optional labels like "client", "colleague" or "vendor" (add as many as you want)
 
 **What you need to know:**
