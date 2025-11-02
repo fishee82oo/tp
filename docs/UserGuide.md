@@ -199,7 +199,7 @@ help
 **You'll see:**
 ![Help Image](images/helpCommand.png)
 
-You can click `Browse` or `Copy URL` to access the complete user guide or to copy the URL respectively.
+You can click on `Browse` or `Copy URL` to access the complete user guide or to copy the URL respectively.
 
 &rarr; Quick access to our user guide when you need guidance
 

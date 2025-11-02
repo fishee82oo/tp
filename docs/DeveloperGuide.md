@@ -837,9 +837,9 @@ testers are expected to do more *exploratory* testing.
 ### Listing all Contacts
 1.  List all contacts in FastCard.
 
-   -   Prerequisite: At least one contact exists in FastCard.
+    -  Prerequisite: At least one contact exists in FastCard.
 
-   -   Test case: `list`<br>
+    -  Test case: `list`<br>
        Expected: All contacts are displayed.
 
 ### Deleting a Contact
