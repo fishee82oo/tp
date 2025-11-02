@@ -34,6 +34,7 @@ public class DeleteCommandTest {
     @Test
     public void execute_validNameUnfilteredList_success() {
         Person personToDelete = model.getFilteredPersonList().get(0);
+        model.updateFocusedPerson(0);
         DeleteCommand deleteCommand = new DeleteCommand(personToDelete.getName());
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
                 Messages.format(personToDelete));
@@ -57,6 +58,7 @@ public class DeleteCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Person personToDelete = model.getFilteredPersonList().get(0);
+        model.updateFocusedPerson(0);
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
