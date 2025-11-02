@@ -413,6 +413,11 @@ When you use `t/` to edit tags, it replaces ALL existing tags with the new ones 
 
 To keep existing tags while adding new ones, use `t+/` instead.
 
+**⚠️ Warning: Tag deletion with `t-/` is case-insensitive**
+
+When you use `t-/` to delete tags, the search is case-insensitive. Be mindful of this to avoid unintentionally deleting tags.
+  * Example: Contact has `[Client][vendor]` → `edit John t-/client` → Result: `[vendor]` (`[Client]` is deleted despite capital 'C')
+
 </box>
 
 **When to use this:**
