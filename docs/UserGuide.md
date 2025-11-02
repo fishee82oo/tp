@@ -409,6 +409,54 @@ add n/Mike Kumar p/87654321 e/mike@company.com c/ABC Industries
           - For "daughter of": Use `d.o.` or `d-o` instead of `d/o`
       - **Note:** Common official patterns like `s/o` (son of) is **allowed** and safe, because `s/` is not a reserved prefix.
 
+### Viewing details: `view`
+
+Toggles the Detail Pane showing specified user in detail (except tags).
+
+![FastCard UI](images/Ui_detail.png)
+
+**Format:**
+* `view INDEX`
+
+**Examples:**
+**Example 1: View Details of contact in index 1**
+```
+view 1
+```
+**You'll see:**
+* Information about the specific user
+* details added using the `d/` field through the [`edit`](#updating-contact-information-edit) command
+* Detail Pane toggle to view
+
+**When should you use this?**
+* When you want to review meeting notes or preferences you've saved for a contact
+* When you want to copy a quick reference to the information to transfer to another application
+* Buttons corresponding to each core information is displayed
+* Clicking on the button will add the information to your clipboard for ease of transfer
+
+
+<box type="info" seamless>
+<b>Why isn't this a command instead?</b>
+
+- While our application aims to be mainly command focused for familiar users
+- We acknowledge the efficiency and accuracy of a single click action in this case
+- Especially since the expected use case is for extended interactions off app (which likely takes clicks!)
+
+</box>
+
+<box type="warning" seamless>
+<b>Dragging into view</b>
+
+- Use only the `view` command to toggle the visibility of the detail pane.
+- Manual hide or show by dragging, may cause the information to not appear on the pane as expected.
+
+- (Note) Dragging is useful ONLY for resizing the visible detail pane so that the information shown can be displayed in its entirety
+
+- Quick fixes: Simply run `view` once or twice to reset the detail pane orientation! 
+
+
+</box>
+
 ### Updating contact information: `edit`
 
 Updates an existing contact's information by either their name or position number in the list.
@@ -878,49 +926,7 @@ Multiple contacts named John Doe found. Please specify the index to delete.
   * `delete 0` &rarr; Invalid index (index starts at 1, not 0)
   * `delete 5` when only 3 contacts shown &rarr; Index out of range (must be within displayed list)
 
-### Viewing details: `view`
 
-Toggles the Detail Pane showing specified user in detail, including any notes stored in the detail field.
-
-![FastCard UI](images/Ui_detail.png)
-
-**Format:**
-  * `view INDEX`
-
-**Examples:**
-**Example 1: View Details of contact in index 1**
-```
-view 1
-```
-**You'll see:**
-  * The full information about the user (if it's too long to be shown on the main card)
-  * Any notes or details added using the `d/` field in the edit command
-  * (If Focus Contact has not been selected yet) -> Shows a guiding message.
-  * Detail Pane toggle to view (if not already visible)
-
-**When should you use this?**
-  * When you want to view the full version of the contact info including detail notes
-  * When you want to review meeting notes or preferences you've saved for a contact
-  * When you want a quick reference to the information to transfer to another application
-  * Buttons corresponding to each core information is displayed 
-  * Clicking on the button will add the information to your clipboard for ease of transfer
-
-<box type="warning" seamless>
-
-**⚠️ WARNING: Potential Stale Information**
-  * When you edit the currently focused Contact, the information may become stale! 
-  * Simply ensure that you refresh calling `view INDEX` again!
-
-</box>
-
-<box type="info" seamless>
-<b>Why isn't this a command instead?</b>
-
-  - While our application aims to be mainly command focused for familiar users
-  - We acknowledge the efficiency and accuracy of a single click action in this case
-  - Especially since the expected use case is for extended interactions off app (which likely takes clicks!)
-
-</box>
 
 ### Recalling previous commands - Command History
 
