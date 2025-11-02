@@ -683,7 +683,7 @@ Arranges your contacts in alphabetical order based on the field you choose - use
   * `desc` or `descending` - Z to A followed by 9 to 0 order
 
 **What you need to know:**
-  * You should specify both field and order only (Specifying other parameters is invalid)
+  * You should specify both the field and the order only (Specifying other parameters is invalid)
   * You should only specify one field and one order
   * Field and order are not case-sensitive. (`NAME = name`, `ASC` = `asc`)
   * Contacts without the sorted field appear at the start (for ascending order) or end (for descending order)
