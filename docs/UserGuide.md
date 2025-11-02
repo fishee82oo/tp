@@ -1031,7 +1031,7 @@ Permanently deletes every contact from FastCard - use only when starting complet
 
 <box type="warning" seamless>
 
-**⚠️ WARNING: This permanently deletes ALL contacts from FastCard. This cannot be undone.**
+**⚠️ WARNING: This cannot be undone.**
 
 Before using `clear`:
   * **Backup your data** - Copy the `fastcard.json` file from your FastCard data folder
@@ -1045,7 +1045,7 @@ Before using `clear`:
 
 **When NOT to use this:**
   * Removing specific outdated contacts - Use [`delete`](#removing-a-contact-delete) instead
-  * Cleaning up a few contacts - Use [`filter`](#filtering-contacts-filter) or [`find`](#searching-for-contacts-by-name-find) then delete individually
+  * Cleaning up a few contacts - Use [`filter`](#filtering-contacts-filter) or [`find`](#searching-for-contacts-find) then delete individually
 
 **Example: Starting fresh after testing. (With a filled contact list)**
 ```
@@ -1054,14 +1054,14 @@ clear
 **You'll see:**
 ```
 This will delete all your contacts (action irreversible!)
-If you'd like to continue, confirm with input [clear <CONFIRM_WORD>]
+If you'd like to continue, confirm with input [clear CONFIRM]
 ```
 The <CONFIRM_WORD> will be shown to you in the feedback screen. 
 If you accept that the list will be irreversibly cleared, simply input as guided.
 ```
-clear <CONFIRM_WORD>
+clear CONFIRM
 ```
-Finally you'll see the empty list with the response:
+Finally, you'll see the empty list with the response:
 ```
 Contact book has been cleared!
 ```
@@ -1069,11 +1069,6 @@ Contact book has been cleared!
 **In the contact list:**
   * All contacts disappear immediately
   * You're left with a completely empty contact list
-
-&rarr; Removes all sample contacts you added while learning FastCard
-
-**Common mistakes:**
-  * Thinking you can undo &rarr; You can't - deletion is permanent
 
 ### Closing FastCard : `exit`
 

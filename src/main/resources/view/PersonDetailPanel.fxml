@@ -43,7 +43,7 @@
 
   <VBox VBox.vgrow="ALWAYS">
     <Region VBox.vgrow="ALWAYS" />
-    <Label text="If recently edited, please select again to refresh!" wrapText="true" styleClass="detailAdviceLabel"/>
+    <Label text="If recently edited, run 'view INDEX' again to refresh!" wrapText="true" styleClass="detailAdviceLabel"/>
     <Label text="Detail View" />
     <Label text="Type [view] to toggle" />
   </VBox>

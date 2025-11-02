@@ -167,7 +167,11 @@ public class ModelManager implements Model {
     @Override
     public void updateFocusedPerson(int index) {
         requireAllNonNull(index);
-        focusedPerson.set(filteredPersons.get(index));
+        if (index == -1) {
+            focusedPerson.set(null);
+        } else {
+            focusedPerson.set(filteredPersons.get(index));
+        }
     }
 
     @Override
