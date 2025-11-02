@@ -5,10 +5,10 @@
 ---
 
 # FastCard User Guide
-FastCard is a speed-focused contact manager for sales and procurement professionals who type faster than they click. Instead of navigating through menus, you type simple commands to add, find and manage your network in seconds. Pure Speed!
+FastCard is a speed-focused contact manager for sales and procurement professionals who type faster than they click. Instead of navigating through menus, you type simple commands to add, find, and manage your network in seconds. Pure Speed!
 
 **Key Benefits:**
-- 🎯 Find anyone instantly with keyword search
+- 🎯 Find anyone instantly with a keyword search
 - 🏷️ Organize with tags for quick filtering
 - 💾 Auto-save every change - never lose data
 - 🔒 100% offline - your data stays on your computer
@@ -16,7 +16,7 @@ FastCard is a speed-focused contact manager for sales and procurement profession
 ## Who Should Use FastCard?
 
 **Ideal for:**
-- Sales professionals managing 100+ client relationships
+- Sales professionals managing a lot of client relationships
 - Procurement specialists tracking vendor contacts
 - Business development teams building professional networks
 - Anyone who types faster than they click through menus
@@ -183,34 +183,30 @@ Opens a help window with a link to the complete user guide.
 **Format:** `help`
 
 **What you need to know:**
-  * Opens a popup window with help information
+  * Opens a pop-up window containing a link to our user guide
   * You can close the window to return to FastCard
-  * You can also press `F1` as a keyboard shortcut
+  * You can also press `F1` as a keyboard shortcut to open the pop-up window
 
 **When to use this:**
   * You forgot how a command works
-  * You want to see all available commands
-  * You need detailed examples or explanations
+  * You want to see all available commands, which can be found in our user guide
   * You're learning FastCard for the first time
 
-**Example: Opening help window**
+**Example: Opening the help window**
 ```
 help
 ```
 **You'll see:**
-  * A popup window appears with the help message
-  * You can click `Browse` or `Copy URL` to access the complete user guide or to copy the URL respectively.
+![Help Image](images/helpCommand.png)
 
-**In the main window:**
-  * FastCard remains open in the background
-  * You can continue using FastCard after closing the help window
+You can click `Browse` or `Copy URL` to access the complete user guide or to copy the URL respectively.
 
-&rarr; Quick access to full documentation when you need guidance
+&rarr; Quick access to our user guide when you need guidance
 
 <box type="tip" seamless>
 
    Pro Tips:
-  * **Keep guide bookmarked** - Save the user guide URL in your browser for quick reference
+  * **Keep the guide bookmarked** - Save the user guide URL in your browser for quick reference
   * **Check before experimenting** - Review command formats in the guide before trying new commands
 
 </box>
@@ -225,31 +221,20 @@ Shows your complete contact list, displaying everyone in FastCard.
   * Removes any active filters or searches
 
 **When to use this:**
-  * After you use `find` or `filter` to return to full view
-  * You want to see all of contacts
-  * To start fresh before a new search or filter
+  * After you use `find` or `filter` to return to the full view
+  * You want to see all of your contacts
 
 **Example: Viewing all contacts:**
 ```
 list
 ```
 **You'll see:**
-```
-Listed all persons
-```
+![List Image](images/listCommand.png)
+
 **In the contact list:**
-  * All contacts reappear (any previous filters are removed)
+  * All contacts will be shown (any previous filters are removed)
 
 &rarr; Use this as your "reset" command to see everyone after any operation
-
-<box type="tip" seamless>
-
-   Pro Tips:
-  * **Your reset button** - Think of `list` as your "show everything" reset whenever you're narrowed down
-  * **Before filtering** - Run `list` first to ensure you're starting with everyone visible
-  * **After accidental filter** - If you filtered by mistake and can't find contacts, `list` brings everyone back
-
-</box>
 
 **Common mistakes:**
   * Expecting `list` to show filtered results &rarr; It shows **ALL** contacts (removes filters)
@@ -631,21 +616,21 @@ Shows only contacts that have specific tags - perfect for viewing contacts by ca
   * You must specify at least one tag
   * You can specify more than one tag
     * Contacts with **any** of those tags will appear (not all tags required)
-    * Specifying the same tag multiple times will be treated as it being specified once
+    * Specifying the same tag multiple times will be treated as if it were specified once
   * Tags are not case-sensitive (`t/client` = `t/CLIENT`)
-  * You should only specify tags (specifying other parameters is invalid e.g., `filter t/colleague n/John`)
+  * You should only specify tags (specifying other parameters is invalid, e.g., `filter t/colleague n/John`)
   * You may list the tags in any order.
   * The exact tag name must match (e.g., `client` won't find contacts tagged with `clients`)
   * Tags specified must be alphanumeric and at most 30 characters
   * Leading and trailing whitespaces are trimmed
   * If no contacts contain any of the specified tags, an empty contact list will be shown
-  * The global contact list shown by `list` command will be filtered, and not the currently displayed contact list
+  * The global contact list shown by the `list` command will be filtered, and not the currently displayed contact list
   * Filtering an empty contact list will still result in an empty contact list
 
 **When to use this:**
   * You want to view all contacts in a specific category (all clients, all vendors, etc.)
   * You want to prepare for meetings by filtering relevant contacts
-  * You need to quickly access frequently-contacted groups
+  * You need to quickly access frequently contacted groups
 
 **Examples:**
 
@@ -654,22 +639,18 @@ Shows only contacts that have specific tags - perfect for viewing contacts by ca
 filter t/client
 ```
 **You'll see (depending on the number of contacts with the client tag):**
-```
-3 contact(s) listed!
-```
-**In the contact list:**
-  * Only contacts tagged with "client" are displayed
+![Filter Image](images/filterCommand.png)
 
-&rarr; Shows only contacts tagged as "client" - perfect before a client review meeting
+&rarr; Only shows contacts with the `client` tag
 
 **Example 2: View multiple business categories**
 ```
 filter t/client t/vendor t/partner
 ```
 **You'll see:**
-  * Similar to above
+![Filter Second Image](images/filterCommandSecondExample.png)
 
-&rarr; Shows anyone tagged as client, vendor, OR partner - useful for business contact overview
+&rarr; Shows contacts with the `client`, `vendor`, **OR** `partner` tag
 
 <box type="tip" seamless>
 
@@ -690,12 +671,12 @@ Arranges your contacts in alphabetical order based on the field you choose - use
 **Format:** `sort f/FIELD o/ORDER`
 
 **What you need to provide:**
-  * **Field** (`f/`) - What to sort by: `name` or `tag`
-  * **Order** (`o/`) - Direction: `asc` (ascending/A-Z) or `desc` (descending/Z-A)
+  * **Field** (`f/`) - What field to sort by
+  * **Order** (`o/`) - What direction to sort in
 
 **Available fields:**
   * `name` - Sort by contact name
-  * `tag` - Sort by the first tag alphabetically (e.g., If a contact has tags `vendor` and `priority`, the `priority` tag will be used for sorting by tag as it is the first tag in alphabetical order)
+  * `tag` - Sort by the first alphabetical tag (e.g., If a contact has tags `vendor` and `priority`, the `priority` tag will be used for sorting by tag as it is the first tag in alphabetical order)
 
 **Available orders:**
   * `asc` or `ascending` - 0 to 9 followed by A to Z order
@@ -713,38 +694,25 @@ Arranges your contacts in alphabetical order based on the field you choose - use
 
 <box type="warning" seamless>
 
-The `sort` command works on the overall contact list and not just a filtered list from `find` or `filter`.
+The `sort` command works on the overall contact list, not just a filtered list from `find` or `filter`.
 
 </box>
 
 **When to use this:**
   * You want to organize your contact list for easier scanning
   * You need to prepare alphabetically ordered lists for meetings or reports
-  * You want to group contacts by tag categories
 
-**Examples:**
+**Example:**
 
-**Example 1: Alphabetize all contacts**
+**Example 1: Sorting by name**
 ```
 sort f/name o/asc
 ```
 **You'll see:**
-```
-Sorted all contact(s) by name in ascending order
-```
-**In the contact list:**
-  * Contacts are now alphabetically ordered A&rarr;Z by name
+![Sort Image](images/sortCommand.png)
 
-&rarr; Orders everyone A&rarr;Z by name - perfect for quickly locating someone in a long list
+&rarr; Orders contacts by name in ascending order
 
-**Example 2: Reverse alphabetical order**
-```
-sort f/name o/desc
-```
-**You'll see:**
-  * Similar to above
-
-&rarr; Orders everyone Z&rarr;A by name
 
 **Common mistakes:**
   * `sort f/name` &rarr; Missing order (must provide both field **AND** order)

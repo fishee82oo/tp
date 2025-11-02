@@ -1081,21 +1081,21 @@ testers are expected to do more *exploratory* testing.
 ### Saving Data
 
 1. Dealing with missing/corrupted data files
-   Precondition: `FastCard` application is closed
+   - Precondition: `FastCard` application is closed
 
-   1. Test case (Application Launch with Missing Data File):<br>
-      Steps:
-         * Navigate to the application's `data` folder
-         * Delete `fastcard.json` if the file exists
-         * Launch `FastCard` again
-      Expected: Default list of contacts shown.
+   - Test case (Application Launch with Missing Data File):<br>
+       * Navigate to the application's `data` folder
+       * Delete `fastcard.json` if the file exists
+       * Launch `FastCard` again
+
+         Expected: Default list of contacts shown.
    
-   1. Test case (Corrupted data file):<br>
-      Steps:
-         * Navigate to the application's `data` folder
-         * Delete the name of any contact and save your changes
-         * Launch `FastCard` again
-      Expected: No contacts shown.
+   - Test case (Corrupted data file):<br>
+       * Navigate to the application's `data` folder
+       * Delete the name of any contact and save your changes
+       * Launch `FastCard` again
+      
+         Expected: No contacts shown.
 
 --------------------------------------------------------------------------------------------------------------------
 
