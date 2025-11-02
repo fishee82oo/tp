@@ -395,7 +395,7 @@ Updates an existing contact's information by either their name or position numbe
   * All fields are optional, but you must provide at least one
 
 **What you need to know:**
-  * **Edit by index** - Use the number shown next to the contact (must be 1, 2, 3, etc.)
+  * **Edit by index** - Use the number shown next to the contact (must be 1, 2, 3, etc.). Index starts at 1, not 0
   * **Edit by name** - Name matching is case-insensitive (`john doe` = `John Doe`)
   * **Full Name Required** - If editing by name, you need to provide the contact's full name (e.g., `edit Sarah` will not edit `Sarah Chen`'s contact)
   * **Multiple contacts with the same name** - FastCard will show all matches and ask you to edit by index instead
@@ -403,6 +403,9 @@ Updates an existing contact's information by either their name or position numbe
   * **Existing values are replaced** - For name, phone, email, company, and detail fields, your new input completely replaces the old information
   * **Detail field** (`d/`) - A note field with a maximum of 300 characters. Can be left empty to clear existing detail
   * **Tags are flexible** - You can overwrite all tags (`t/`), add to existing tags (`t+/`), or remove specific tags (`t-/`)
+  * **Tag operations cannot be mixed** - You cannot use `t/` together with `t+/` or `t-/` in the same command (conflicting tag operations)
+  * **Removing non-existent tags** - Using `t-/` to remove a tag that doesn't exist will show an error listing the non-existent tags
+  * **Empty tag names not allowed** - You must provide at least one tag name after `t/`, `t+/`, or `t-/`
 
 <box type="warning" seamless>
 
@@ -526,15 +529,6 @@ edit 2 t+/partner t-/client
   * **Clear detail field** - Use `edit INDEX d/` with nothing after `d/` to remove existing detail
 
 </box>
-
-**Common Mistakes:**
-  * `edit John Doe` &rarr; No fields provided (you must include at least one field to update)
-  * `edit 0 p/91234567` &rarr; Invalid index (index starts at 1, not 0)
-  * `edit 1 e/existing@email.com` &rarr; Trying to use an email that already belongs to another contact (you'll see "This email already exists in the contact book")
-  * `edit 1 t/client t+/priority` &rarr; Cannot mix `t/` with `t+/` or `t-/` (conflicting tag operations)
-  * `edit 1 t-/colleague` when contact doesn't have `[colleague]` tag &rarr; FastCard will show an error listing non-existent tags
-  * `edit 1 t+/` or `edit 1 t-/` &rarr; Empty tag name (you must provide at least one tag after `t+/` or `t-/`)
-  * `edit 1 d/[very long text over 300 characters]` &rarr; Detail field exceeds maximum length of 300 characters
 
 ### Searching for contacts: `find`
 Quickly finds contacts whose names or companies match the keywords you provide.
