@@ -1056,7 +1056,7 @@ clear
 This will delete all your contacts (action irreversible!)
 If you'd like to continue, confirm with input [clear CONFIRM]
 ```
-The <CONFIRM_WORD> will be shown to you in the feedback screen. 
+The full confirmed clear command will be shown to you in the feedback screen. 
 If you accept that the list will be irreversibly cleared, simply input as guided.
 ```
 clear CONFIRM
@@ -1065,6 +1065,15 @@ Finally, you'll see the empty list with the response:
 ```
 Contact book has been cleared!
 ```
+If instead you entered the confirmation word incorrectly e.g.:
+```
+clear something
+```
+You'll see the error message:
+```
+Improper Confirmation. Unchanged
+```
+If you are still certain that you want to clear everything. Simply type in the correct confirmation as mentioned above.
 
 **In the contact list:**
   * All contacts disappear immediately
