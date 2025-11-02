@@ -401,12 +401,12 @@ Updates an existing contact's information by either their name or position numbe
   * **Multiple contacts with the same name** - FastCard will show all matches and ask you to edit by index instead
   * **Email uniqueness** - Each email address must be unique across all contacts (except for placeholder emails like `unknown@example.com`). You cannot change a contact's email to one that's already used by another contact
   * **Existing values are replaced** - For name, phone, email, company, and detail fields, your new input completely replaces the old information
-  * **Detail field** (`d/`) - A note field with a maximum of 300 characters. Can be left empty to clear existing detail
+  * **Detail field** (`d/`) - A note field with a maximum of 300 characters. Can be left empty to clear existing detail. Notice the note can only be viewed in the detail view (see [`view` command](#viewing-details-view)).
 
 <box type="tip" seamless>
 
    Pro Tips:
-  * **Use detail field for context** - Add meeting notes, preferences, or important reminders about contacts (max 300 characters)
+  * **Use detail field for context** - Add meeting notes, preferences, or important reminders about contacts. 
   * **Clear detail field** - Use `edit INDEX d/` with nothing after `d/` to remove existing detail
 
 </box>
