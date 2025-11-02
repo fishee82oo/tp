@@ -1081,21 +1081,21 @@ testers are expected to do more *exploratory* testing.
 ### Saving Data
 
 1. Dealing with missing/corrupted data files
-   Precondition: `FastCard` application is closed
+   - Precondition: `FastCard` application is closed
 
-   1. Test case (Application Launch with Missing Data File):<br>
-      Steps:
-         * Navigate to the application's `data` folder
-         * Delete `fastcard.json` if the file exists
-         * Launch `FastCard` again
-      Expected: Default list of contacts shown.
+   - Test case (Application Launch with Missing Data File):<br>
+       * Navigate to the application's `data` folder
+       * Delete `fastcard.json` if the file exists
+       * Launch `FastCard` again
+
+         Expected: Default list of contacts shown.
    
-   1. Test case (Corrupted data file):<br>
-      Steps:
-         * Navigate to the application's `data` folder
-         * Delete the name of any contact and save your changes
-         * Launch `FastCard` again
-      Expected: No contacts shown.
+   - Test case (Corrupted data file):<br>
+       * Navigate to the application's `data` folder
+       * Delete the name of any contact and save your changes
+       * Launch `FastCard` again
+      
+         Expected: No contacts shown.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1105,3 +1105,6 @@ Team size: 5
 
 1. **Make filter error messages more error-specific.**
 Some errors from the filter command can be made more specific. We plan to make the error message mention the reason for the failure (invalid tag, empty tag, etc).
+
+2. **Sort only by the filtered list.**
+The `sort` command currently acts on the global list and not the currently filtered list shown to the user. We plan to modify it such that the `sort` command only sorts the currently filtered list.
