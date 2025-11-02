@@ -314,7 +314,7 @@ Adds a contact with full information including name, phone, email, company, and 
     * Instead, you may use `.` or `-` in names if needed (e.g. `Rahul s.o. Kumar`, `Tan-Kumar`).
   * **Phone** (`p/`) - At least 3 digits, at most 20 digits
   * **Email** (`e/`) - Valid email address (e.g., name@company.com)
-    * We **do not recommend** entering `unknown@example.com`, as it is used internally as an `invisible` placeholder when you do not specify an email for your contact.
+    * We **do not recommend** entering `unknown@example.com`, as it is used internally as an `invisible` placeholder when you do not specify an company for your contact.
     * If you enter that specific value, you will not see the field in your FastCard interface.
   * **Company** (`c/`) - Company or organization name
     * We **do not recommend** entering `N/A`, as it is used internally as an `invisible` placeholder when you do not specify an email for your contact.
@@ -536,12 +536,12 @@ Quickly finds contacts whose names or companies match the keywords you provide.
 You can search by name, company, or both at the same time.
 
 **Format:** 
-`find [n/NAME`] [`find c/COMPANY`]
+`find n/NAME`OR`find c/COMPANY` OR`find n/NAME c/COMPANY`
 
 **What you need to provide:**
   * `n/` – keyword that appears in the contact’s name
   * `c/` – keyword that appears in the contact’s company
-  * At least to provide one prefix with its value. Can do search via both
+  * **At least to provide one prefix** with its value. Can do search via both
 
 **What you need to know:**
 * Searches are **case-insensitive** – `google`, `Google`, and `GOOGLE` all match the same results
@@ -551,6 +551,7 @@ You can search by name, company, or both at the same time.
     * `find n/Alice c/NUS` → finds contacts whose **name contains “Alice”** **and** whose **company contains “NUS”**
 * If only one prefix is provided, only that field is searched
 * The number of matching contacts will be displayed after searching
+* **Duplicate search is not allowed**
 
 **When to use this:**
   * You remember only part of someone’s name or some keywords of their company name
@@ -600,7 +601,7 @@ find n/Jadon c/Google
 </box>
 
 **Common mistakes:**
-  * `find Han` expecting to find "Hans" &rarr; Partial words don't match (must be complete: `find Hans`)
+  * `find n/Alice n/Bob` expecting to find "Alice" and "Bob" &rarr; Duplicate search in the same field is not allowed.
 
 ### Filtering contacts: `filter`
 
@@ -924,13 +925,15 @@ export f/ContactList
 * File names are **case-sensitive** —
   `export f/Contacts` and `export f/contacts` will create two different files.
 * Allowed characters for filenames follow this regular expression:
+  * **Letters** (A–Z, a–z)
+  * **Numbers** (0–9)
+  * **Spaces**
+  * **Dots (.)**
+  * **Underscores (_)**
+  * **Hyphens (-)**
+  * **Parentheses (( and ))**
+* All other symbols (such as `/`, `\`, `@`, `#`, `!`, `?`, etc.) are **not allowed**.
 
-  ```
-  ^[a-zA-Z0-9._()\-\s]+$
-  ```
-
-  This means filenames can contain **letters, numbers, spaces, underscores `_`, dashes `-`, dots `.`, and parentheses `()`**.
-  Slashes/Backslashes and dots are **not allowed**.
 * Multiple spaces will automatically be **normalized into a single space**.
   Example:
   `export f/  my   new   list` → `my new list.csv`
