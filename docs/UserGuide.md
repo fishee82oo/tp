@@ -5,10 +5,10 @@
 ---
 
 # FastCard User Guide
-FastCard is a speed-focused contact manager for sales and procurement professionals who type faster than they click. Instead of navigating through menus, you type simple commands to add, find and manage your network in seconds. Pure Speed!
+FastCard is a speed-focused contact manager for sales and procurement professionals who type faster than they click. Instead of navigating through menus, you type simple commands to add, find, and manage your network in seconds. Pure Speed!
 
 **Key Benefits:**
-- 🎯 Find anyone instantly with keyword search
+- 🎯 Find anyone instantly with a keyword search
 - 🏷️ Organize with tags for quick filtering
 - 💾 Auto-save every change - never lose data
 - 🔒 100% offline - your data stays on your computer
@@ -16,7 +16,7 @@ FastCard is a speed-focused contact manager for sales and procurement profession
 ## Who Should Use FastCard?
 
 **Ideal for:**
-- Sales professionals managing 100+ client relationships
+- Sales professionals managing a lot of client relationships
 - Procurement specialists tracking vendor contacts
 - Business development teams building professional networks
 - Anyone who types faster than they click through menus
@@ -183,35 +183,30 @@ Opens a help window with a link to the complete user guide.
 **Format:** `help`
 
 **What you need to know:**
-  * Opens a popup window with help information
+  * Opens a pop-up window containing a link to our user guide
   * You can close the window to return to FastCard
-  * You can also press `F1` as a keyboard shortcut
+  * You can also press `F1` as a keyboard shortcut to open the pop-up window
 
 **When to use this:**
   * You forgot how a command works
-  * You want to see all available commands
-  * You need detailed examples or explanations
+  * You want to see all available commands, which can be found in our user guide
   * You're learning FastCard for the first time
 
-**Example: Opening help window**
+**Example: Opening the help window**
 ```
 help
 ```
 **You'll see:**
-  * A popup window appears with the help message
-  * You can click `Browse` or `Copy URL` to access the complete user guide or to copy the URL respectively.
+![Help Image](images/helpCommand.png)
 
-**In the main window:**
-  * FastCard remains open in the background
-  * You can continue using FastCard after closing the help window
+You can click on `Browse` or `Copy URL` to access the complete user guide or to copy the URL respectively.
 
-&rarr; Quick access to full documentation when you need guidance
+&rarr; Quick access to our user guide when you need guidance
 
 <box type="tip" seamless>
 
-💡 Pro Tips:
-  * **Use `F1` shortcut** - Press `F1` on your keyboard for instant help access without typing
-  * **Keep guide bookmarked** - Save the user guide URL in your browser for quick reference
+   Pro Tips:
+  * **Keep the guide bookmarked** - Save the user guide URL in your browser for quick reference
   * **Check before experimenting** - Review command formats in the guide before trying new commands
 
 </box>
@@ -226,31 +221,20 @@ Shows your complete contact list, displaying everyone in FastCard.
   * Removes any active filters or searches
 
 **When to use this:**
-  * After you use `find` or `filter` to return to full view
-  * You want to see all of contacts
-  * To start fresh before a new search or filter
+  * After you use `find` or `filter` to return to the full view
+  * You want to see all of your contacts
 
 **Example: Viewing all contacts:**
 ```
 list
 ```
 **You'll see:**
-```
-Listed all contacts
-```
+![List Image](images/listCommand.png)
+
 **In the contact list:**
-  * All contacts reappear (any previous filters are removed)
+  * All contacts will be shown (any previous filters are removed)
 
 &rarr; Use this as your "reset" command to see everyone after any operation
-
-<box type="tip" seamless>
-
-💡 Pro Tips:
-  * **Your reset button** - Think of `list` as your "show everything" reset whenever you're narrowed down
-  * **Before filtering** - Run `list` first to ensure you're starting with everyone visible
-  * **After accidental filter** - If you filtered by mistake and can't find contacts, `list` brings everyone back
-
-</box>
 
 **Common mistakes:**
   * Expecting `list` to show filtered results &rarr; It shows **ALL** contacts (removes filters)
@@ -263,9 +247,9 @@ Quickly saves a contact with just their name and phone number - perfect when you
 **Format:** `addbasic n/NAME p/PHONE`
 
 **What you need to provide:**
-* **Name** (`n/`) - Full name (letters, numbers, spaces, `/`, `.`, and `-` allowed)
+* **Name** (`n/`) - Full name (letters, numbers, spaces, `.`, and `-` allowed)
     * Note: The `/` character is **not supported** to accommodate official namings such as `Rahul s/o Kumar`.
-    * Similarly, you may use `.` or `-` in names if needed (e.g. `Rahul s.o. Kumar`, `Tan-Kumar`).
+    * Instead, you may use `.` or `-` in names if needed (e.g. `Rahul s.o. Kumar`, `Tan-Kumar`).
 * **Phone** (`p/`) - At least 3 digits, at most 20 digits
 
 **What you need to know:**
@@ -308,20 +292,14 @@ addbasic n/Rahul s.o Kumar p/91112222
 
 <box type="tip" seamless>
 
-💡 Pro Tip: Use [`addbasic`](#adding-a-contact-quickly-addbasic) during conversations or events to capture contacts immediately. Update with full details later using the `edit` command when you're back at your desk.
+   Pro Tip: Use [`addbasic`](#adding-a-contact-quickly-addbasic) during conversations or events to capture contacts immediately. Update with full details later using the `edit` command when you're back at your desk.
 
 </box>
 
 **Common mistakes:**
   * `addbasic n/Alice Tan` &rarr; Missing phone number (both name AND phone are required)
   * `addbasic Alice Tan 91234567` &rarr; Missing prefixes (need `n/` and `p/`)
-  * Including reserved prefixes inside a name
-    - **Symptom:** Commands like `addbasic n/Alice p/o Bob p/91234567` fail or parse incorrectly (e.g., `p/` is treated as the start of the phone field, so the name becomes `Alice` and phone becomes `o Bob` → error).
-    - **Reason:** The parser treats any reserved prefix followed by `/` (e.g., `n/`, `p/`, `e/`, `c/`, `d/`, `t/`) as a new field, even if it appears inside a value.
-    - **Fix:** Do **not** include reserved prefixes with `/` inside names. If you must indicate relationships, use alternatives such as:
-        - `Alice p.o. Bob`
-        - `Alice p-o Bob`
-        - For "daughter of": Use `d.o.` or `d-o` instead of `d/o`
+  * `addbasic n/David D/O Tan p/12345678` &rarr; Using banned sign `/` in the name field
 
 
 ### Adding a contact with complete details: `add`
@@ -331,16 +309,16 @@ Adds a contact with full information including name, phone, email, company, and 
 **Format:** `add n/NAME p/PHONE e/EMAIL c/COMPANY [t/TAG]…`
 
 **What you need to provide:**
-  * **Name** (`n/`) - Full name (letters, numbers, spaces, `/`, `.`, and `-` allowed)
-    * Note: The `/` character is supported to accommodate official namings such as `Rahul s/o Kumar`.  
-      Similarly, you may use `.` or `-` in names if needed (e.g. `Rahul s.o. Kumar`, `Tan-Kumar`).
-  * **Phone** (`p/`) - At least 3 digits
+  * **Name** (`n/`) - Full name (letters, numbers, spaces, `.`, and `-` allowed)
+    * Note: The `/` character is **not supported** to accommodate official namings such as `Rahul s/o Kumar`.
+    * Instead, you may use `.` or `-` in names if needed (e.g. `Rahul s.o. Kumar`, `Tan-Kumar`).
+  * **Phone** (`p/`) - At least 3 digits, at most 20 digits
   * **Email** (`e/`) - Valid email address (e.g., name@company.com)
-    * * We *do not recommend* entering `unknown@example.com`, as it is used internally as an `invisible` placeholder when you do not specify an email for your contact.
-    * * If you enter that specific value, you will not see the field in your FastCard interface.
+    * We **do not recommend** entering `unknown@example.com`, as it is used internally as an `invisible` placeholder when you do not specify an email for your contact.
+    * If you enter that specific value, you will not see the field in your FastCard interface.
   * **Company** (`c/`) - Company or organization name
-    * * We *do not recommend* entering `N/A`, as it is used internally as an `invisible` placeholder when you do not specify an email for your contact.
-    * * If you enter that specific value, you will not see the field in your FastCard interface.
+    * We **do not recommend** entering `N/A`, as it is used internally as an `invisible` placeholder when you do not specify an email for your contact.
+    * If you enter that specific value, you will not see the field in your FastCard interface.
   * **Tags** (`t/`) - Optional labels like "client", "colleague" or "vendor" (add as many as you want)
 
 **What you need to know:**
@@ -389,7 +367,7 @@ add n/Mike Kumar p/87654321 e/mike@company.com c/ABC Industries
 
 <box type="tip" seamless>
 
-💡 Pro Tip:
+   Pro Tip:
   * **Create a tagging system** - Use consistent tags like `client`, `vendor`, `colleague`, `priority` across all contacts. This allows you to filter and find contacts quickly!
 
 </box>
@@ -400,14 +378,8 @@ add n/Mike Kumar p/87654321 e/mike@company.com c/ABC Industries
   * `add John Doe 91234567 john@email.com Shopee` &rarr; Missing prefixes (need `n/`, `p/`, `e/`, `c/`)
   * `add n/John Doe p/91234567 e/john@example.com c/Shopee t/friend, colleague` &rarr; Don't use commas between tags (repeat `t/` instead)
   * `add n/John Doe p/91234567 e/existing@email.com c/Shopee` &rarr; Trying to add a contact with an email that already exists (you'll see "This email already exists in the contact book")
-  * Including reserved prefixes inside a name
-      - **Symptom:** Commands like `add n/Alice p/o Bob p/91234567` fail or parse incorrectly (e.g., `p/` is treated as the start of the phone field, so the name becomes `Alice` and phone becomes `o Bob` → error).
-      - **Reason:** The parser treats any reserved prefix followed by `/` (e.g., `n/`, `p/`, `e/`, `c/`, `d/`, `t/`) as a new field, even if it appears inside a value.
-      - **Fix:** Do **not** include reserved prefixes with `/` inside names. If you must indicate relationships, use alternatives such as:
-          - `Alice p.o. Bob`
-          - `Alice p-o Bob`
-          - For "daughter of": Use `d.o.` or `d-o` instead of `d/o`
-      - **Note:** Common official patterns like `s/o` (son of) is **allowed** and safe, because `s/` is not a reserved prefix.
+  * `add n/David D/O Tan p/12345678 c/Shopee e/12345678@gmail.com` &rarr; Using banned sign `/` in the name field
+
 
 ### Viewing details: `view`
 
@@ -471,14 +443,51 @@ Updates an existing contact's information by either their name or position numbe
   * All fields are optional, but you must provide at least one
 
 **What you need to know:**
-  * **Edit by index** - Use the number shown next to the contact (must be 1, 2, 3, etc.)
+  * **Edit by index** - Use the number shown next to the contact (must be 1, 2, 3, etc.). Index starts at 1, not 0
   * **Edit by name** - Name matching is case-insensitive (`john doe` = `John Doe`)
   * **Full Name Required** - If editing by name, you need to provide the contact's full name (e.g., `edit Sarah` will not edit `Sarah Chen`'s contact)
   * **Multiple contacts with the same name** - FastCard will show all matches and ask you to edit by index instead
   * **Email uniqueness** - Each email address must be unique across all contacts (except for placeholder emails like `unknown@example.com`). You cannot change a contact's email to one that's already used by another contact
   * **Existing values are replaced** - For name, phone, email, company, and detail fields, your new input completely replaces the old information
-  * **Detail field** (`d/`) - A note field with a maximum of 300 characters. Can be left empty to clear existing detail
-  * **Tags are flexible** - You can overwrite all tags (`t/`), add to existing tags (`t+/`), or remove specific tags (`t-/`)
+  * **Detail field** (`d/`) - A note field with a maximum of 300 characters. Can be left empty to clear existing detail. Notice the note can only be viewed in the detail view (see [`view` command](#viewing-details-view)).
+
+<box type="tip" seamless>
+
+   Pro Tips:
+  * **Use detail field for context** - Add meeting notes, preferences, or important reminders about contacts
+  * **Clear detail field** - Use `edit INDEX d/` with nothing after `d/` to remove existing detail
+
+</box>
+
+  * **Using slash `/` in values** - Although using `/` is generally allowed for company and detail, it is likely to cause unintended behavior if specific format for prefixes such as " p/" " e/" appear in the value
+  * **Flexible tag management** - You can overwrite all tags (`t/`), add to existing tags (`t+/`), or remove specific tags (`t-/`)
+  * **Tag operations cannot be mixed** - You cannot use `t/` together with `t+/` or `t-/` in the same command (conflicting tag operations)
+  * **Removing non-existent tags** - Using `t-/` to remove a tag that doesn't exist will show an error listing the non-existent tags
+  * **Empty tag names not allowed** - You must provide at least one tag name after `t/`, `t+/`, or `t-/`
+
+<box type="warning" seamless>
+
+**⚠️ Warning: Using `t/` will overwrite ALL existing tags**
+
+When you use `t/` to edit tags, it replaces ALL existing tags with the new ones you specify. Previous tags will be completely removed.
+  * Example: Contact has `[client][priority]` → `edit John t/vendor` → Result: `[vendor]` (old tags are gone)
+
+To keep existing tags while adding new ones, use `t+/` instead.
+
+**⚠️ Warning: Tag deletion with `t-/` is case-insensitive**
+
+When you use `t-/` to delete tags, the search is case-insensitive. Be mindful of this to avoid unintentionally deleting tags.
+  * Example: Contact has `[Client][vendor]` → `edit John t-/client` → Result: `[vendor]` (`[Client]` is deleted despite capital 'C')
+
+</box>
+
+<box type="tip" seamless>
+
+   Pro Tips:
+  * **Use `t+/` and `t-/` for gradual tag management** - Add or remove tags without worrying about losing existing ones
+  * **Combine add and delete** - Change contact roles in one command: `edit John t+/vendor t-/client`
+  
+</box>
 
 **When to use this:**
   * You want to update outdated phone numbers or email addresses
@@ -486,45 +495,6 @@ Updates an existing contact's information by either their name or position numbe
   * You need to correct typos in contact details
   * You want to add or update notes/details about a contact (e.g., meeting notes, preferences, important information)
   * You want to add or change tags for better organization
-
-<box type="warning" seamless>
-
-**⚠️ Important: Tag Management - Three Ways to Update Tags**
-
-FastCard offers three different ways to manage tags when editing:
-
-**1. Overwrite All Tags (`t/`)**
-  * Replaces ALL existing tags with new ones
-  * Example: Contact has `[client][priority]`
-  * Run: `edit John t/vendor`
-  * Result: `[vendor]` (old tags are gone)
-  * To remove all tags: `edit John t/`
-
-**2. Add Tags (`t+/`)**
-  * Adds new tags while keeping existing ones
-  * Example: Contact has `[client]`
-  * Run: `edit John t+/priority t+/vip`
-  * Result: `[client][priority][vip]` (old tags kept, new tags added)
-  * Note: Tag matching is case-insensitive. Adding `t+/CLIENT` to a contact with `[client]` won't change anything.
-
-**3. Delete Tags (`t-/`)**
-  * Removes specific tags while keeping others
-  * Example: Contact has `[client][priority][vip]`
-  * Run: `edit John t-/priority t-/vip`
-  * Result: `[client]` (specified tags removed)
-  * Note: You can only delete tags that exist. FastCard will warn you if a tag doesn't exist.
-  * Note: Tag matching is case-insensitive. Using `t-/CLIENT` will remove the `[client]` tag.
-
-**Can combine add and delete:**
-  * Run: `edit John t+/vendor t-/client`
-  * Removes `client` tag and adds `vendor` tag simultaneously
-
-**⚠️ Cannot mix overwrite with add/delete:**
-  * `t/` cannot be used together with `t+/` or `t-/` in the same command
-  * Example: `edit John t/vendor t+/client` → Error (conflicting tag operations)
-  * Choose either: overwrite all tags OR add/delete specific tags
-
-</box>
 
 **Examples:**
 
@@ -615,26 +585,6 @@ edit 2 t+/partner t-/client
 
 &rarr; Useful when contact's role changes (e.g., from client to partner)
 
-<box type="tip" seamless>
-
-💡 Pro Tips:
-  * **Use `t+/` and `t-/` for gradual tag management** - Add or remove tags without worrying about losing existing ones
-  * **View before editing** - Use `find` or `list` to see current tags before making changes
-  * **Combine add and delete** - Change contact roles in one command: `edit John t+/vendor t-/client`
-  * **Use detail field for context** - Add meeting notes, preferences, or important reminders about contacts (max 300 characters)
-  * **Clear detail field** - Use `edit INDEX d/` with nothing after `d/` to remove existing detail
-
-</box>
-
-**Common Mistakes:**
-  * `edit John Doe` &rarr; No fields provided (you must include at least one field to update)
-  * `edit 0 p/91234567` &rarr; Invalid index (index starts at 1, not 0)
-  * `edit 1 e/existing@email.com` &rarr; Trying to use an email that already belongs to another contact (you'll see "This email already exists in the contact book")
-  * `edit 1 t/client t+/priority` &rarr; Cannot mix `t/` with `t+/` or `t-/` (conflicting tag operations)
-  * `edit 1 t-/colleague` when contact doesn't have `[colleague]` tag &rarr; FastCard will show an error listing non-existent tags
-  * `edit 1 t+/` or `edit 1 t-/` &rarr; Empty tag name (you must provide at least one tag after `t+/` or `t-/`)
-  * `edit 1 d/[very long text over 300 characters]` &rarr; Detail field exceeds maximum length of 300 characters
-
 ### Searching for contacts: `find`
 Quickly finds contacts whose names or companies match the keywords you provide.
 You can search by name, company, or both at the same time.
@@ -696,7 +646,7 @@ find n/Jadon c/Google
 
 <box type="tip" seamless>
 
-💡 Pro Tips:
+   Pro Tips:
   * **Return to full list** - Use [`list`](#viewing-all-contacts-list) after searching to see all contacts again
   * **Narrow your search** - Use fewer, more specific keywords for better results
   * **Search by tags instead** - If you're looking by tags, use [`filter`](#filtering-contacts-filter) instead
@@ -720,21 +670,21 @@ Shows only contacts that have specific tags - perfect for viewing contacts by ca
   * You must specify at least one tag
   * You can specify more than one tag
     * Contacts with **any** of those tags will appear (not all tags required)
-    * Specifying the same tag multiple times will be treated as it being specified once
+    * Specifying the same tag multiple times will be treated as if it were specified once
   * Tags are not case-sensitive (`t/client` = `t/CLIENT`)
-  * You should only specify tags (specifying other parameters is invalid e.g., `filter t/colleague n/John`)
+  * You should only specify tags (specifying other parameters is invalid, e.g., `filter t/colleague n/John`)
   * You may list the tags in any order.
   * The exact tag name must match (e.g., `client` won't find contacts tagged with `clients`)
   * Tags specified must be alphanumeric and at most 30 characters
   * Leading and trailing whitespaces are trimmed
   * If no contacts contain any of the specified tags, an empty contact list will be shown
-  * The global contact list shown by `list` command will be filtered, and not the currently displayed contact list
+  * The global contact list shown by the `list` command will be filtered, and not the currently displayed contact list
   * Filtering an empty contact list will still result in an empty contact list
 
 **When to use this:**
   * You want to view all contacts in a specific category (all clients, all vendors, etc.)
   * You want to prepare for meetings by filtering relevant contacts
-  * You need to quickly access frequently-contacted groups
+  * You need to quickly access frequently contacted groups
 
 **Examples:**
 
@@ -743,26 +693,22 @@ Shows only contacts that have specific tags - perfect for viewing contacts by ca
 filter t/client
 ```
 **You'll see (depending on the number of contacts with the client tag):**
-```
-3 contact(s) listed!
-```
-**In the contact list:**
-  * Only contacts tagged with "client" are displayed
+![Filter Image](images/filterCommand.png)
 
-&rarr; Shows only contacts tagged as "client" - perfect before a client review meeting
+&rarr; Only shows contacts with the `client` tag
 
 **Example 2: View multiple business categories**
 ```
 filter t/client t/vendor t/partner
 ```
 **You'll see:**
-  * Similar to above
+![Filter Second Image](images/filterCommandSecondExample.png)
 
-&rarr; Shows anyone tagged as client, vendor, OR partner - useful for business contact overview
+&rarr; Shows contacts with the `client`, `vendor`, **OR** `partner` tag
 
 <box type="tip" seamless>
 
-💡 Pro Tips:
+   Pro Tips:
   * **Return to full list** - Use `list` after searching to see all contacts again
   * **Search by name instead** - If you're looking by name, use `find` instead
 
@@ -779,19 +725,19 @@ Arranges your contacts in alphabetical order based on the field you choose - use
 **Format:** `sort f/FIELD o/ORDER`
 
 **What you need to provide:**
-  * **Field** (`f/`) - What to sort by: `name` or `tag`
-  * **Order** (`o/`) - Direction: `asc` (ascending/A-Z) or `desc` (descending/Z-A)
+  * **Field** (`f/`) - What field to sort by
+  * **Order** (`o/`) - What direction to sort in
 
 **Available fields:**
   * `name` - Sort by contact name
-  * `tag` - Sort by the first tag alphabetically (e.g., If a contact has tags `vendor` and `priority`, the `priority` tag will be used for sorting by tag as it is the first tag in alphabetical order)
+  * `tag` - Sort by the first alphabetical tag (e.g., if a contact has tags `vendor` and `priority`, the `priority` tag will be used for sorting by tag as it is the first tag in alphabetical order)
 
 **Available orders:**
   * `asc` or `ascending` - 0 to 9 followed by A to Z order
   * `desc` or `descending` - Z to A followed by 9 to 0 order
 
 **What you need to know:**
-  * You should specify both field and order only (Specifying other parameters is invalid)
+  * You should specify both the field and the order only (Specifying other parameters is invalid)
   * You should only specify one field and one order
   * Field and order are not case-sensitive. (`NAME = name`, `ASC` = `asc`)
   * Contacts without the sorted field appear at the start (for ascending order) or end (for descending order)
@@ -802,45 +748,27 @@ Arranges your contacts in alphabetical order based on the field you choose - use
 
 <box type="warning" seamless>
 
-The `sort` command works on the overall contact list and not just a filtered list from `find` or `filter`.
+**⚠️ Warning: Sort applies to all contacts, not filtered lists**
+
+The `sort` command works on the overall contact list, not just a filtered list from `find` or `filter`.
 
 </box>
 
 **When to use this:**
   * You want to organize your contact list for easier scanning
   * You need to prepare alphabetically ordered lists for meetings or reports
-  * You want to group contacts by tag categories
 
-**Examples:**
+**Example:**
 
-**Example 1: Alphabetize all contacts**
+**Example 1: Sorting by name**
 ```
 sort f/name o/asc
 ```
 **You'll see:**
-```
-Sorted all contact(s) by name in ascending order
-```
-**In the contact list:**
-  * Contacts are now alphabetically ordered A&rarr;Z by name
+![Sort Image](images/sortCommand.png)
 
-&rarr; Orders everyone A&rarr;Z by name - perfect for quickly locating someone in a long list
+&rarr; Orders contacts by name in ascending order
 
-**Example 2: Reverse alphabetical order**
-```
-sort f/name o/desc
-```
-**You'll see:**
-  * Similar to above
-
-&rarr; Orders everyone Z&rarr;A by name
-
-<box type="tip" seamless>
-
-💡 Pro Tip:
-  * **Check tag organization** - Use `sort f/tag o/asc` to see how well your tagging system groups contacts
-
-</box>
 
 **Common mistakes:**
   * `sort f/name` &rarr; Missing order (must provide both field **AND** order)
@@ -853,7 +781,7 @@ Permanently removes a contact from FastCard - use with caution as this cannot be
 
 <box type="warning" seamless>
 
-**⚠️ WARNING: Permanent Deletion**
+**⚠️ Warning: Permanent Deletion**
 
 Deleted contacts are **permanently removed** and cannot be recovered. Double-check you're deleting the correct contact before pressing Enter.
 
@@ -866,11 +794,11 @@ Deleted contacts are **permanently removed** and cannot be recovered. Double-che
 - `delete INDEX`
 
 **What you need to provide:**
-  * **Either** - The contact's `NAME`
+  * **Either** - The contact's `NAME` (partial search is not supported)
   * **Or** - The contact's `INDEX` (position number in the displayed list)
 
 **What you need to know:**
-  * **Delete by name or index** - Deleting by name or index works similarly to the `edit` command
+  * **Delete by name or index** - Deleting by full name or index works similarly to the `edit` command
   * **Deletion is permanent** - There is no undo function
   * **Delete by name** - Name matching is case-insensitive (`john doe` = `John Doe`)
 
@@ -915,7 +843,7 @@ Multiple contacts named John Doe found. Please specify the index to delete.
 
 <box type="tip" seamless>
 
-💡 Pro Tips:
+   Pro Tips:
   * **Always verify first** - Use [`find`](#searching-for-contacts-by-name-find) to check contact details before deleting
   * **Note the index carefully** - After each deletion, indexes shift down (what was 3. becomes 2.)
   * **Consider editing instead** - If information is outdated, use [`edit`](#updating-contact-information-edit) to update rather than deleting and re-adding
@@ -960,7 +888,7 @@ The command appears in your command box, ready to be edited or executed again.
 
 <box type="tip" seamless>
 
-💡 Pro Tip:
+   Pro Tip:
   * **Skip retyping** - For complex commands with many fields, recall and modify instead of typing from scratch to save time
 
 </box>
@@ -983,9 +911,9 @@ This allows users to back up or view their contact list in spreadsheet applicati
 
 <box type="warning" seamless>
 
-**⚠️ WARNING: Potential Overwrite!**
-* If a file with the same name already exists on your Desktop,
-  it will be **overwritten without confirmation**.
+**⚠️ Warning: Potential Overwrite**
+
+If a file with the same name already exists on your Desktop, it will be **overwritten without confirmation**.
 
 </box>
 
@@ -1023,7 +951,7 @@ export f/ContactList
 
 <box type="tip" seamless>
 
-💡 **Pro Tip:**
+  Pro Tips:
 * Need to share your contact list with others? Just **export it!**
 * Use the `export` command to instantly create a sharable CSV file on your Desktop.
 * Send the exported file via email or upload it to your team drive — everyone can open it easily in Excel or Numbers to view your contact list.
@@ -1137,14 +1065,18 @@ FastCard saves your contacts automatically every time you make a change.
 Your contact data is stored in a file called `fastcard.json` located in `[JAR file location]/data/`.
 Advanced users are welcome to update data directly by editing that data file.
 
-**⚠️ WARNING: Manual editing is risky**
+</box>
 
-**If you edit this file incorrectly:**
+<box type="warning" seamless>
+
+**⚠️ Warning: Manual editing is risky**
+
+If you edit this file incorrectly:
   * FastCard will delete **ALL** your data and start with an empty file
   * The app may behave unpredictably
   * You could lose all your contacts permanently
 
-**Before editing:**
+Before editing:
   * Make a backup copy of the file
   * Only proceed if you understand JSON file format
   * Test with a small change first

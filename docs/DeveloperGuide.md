@@ -103,7 +103,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 <puml src="diagrams/UiClassDiagram.puml" alt="Structure of the UI Component"/>
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonDetailPanel`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2526S1-CS2103T-F11-4/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2526S1-CS2103T-F11-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
@@ -157,6 +157,7 @@ The `Model` component,
 
 * stores the company book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' (e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list changes).
+* stores the currently 'focused' `Person` objects (e.g., target of view detail command) as a separate _focused_ person which is exposed to outsiders as an unmodifiable `SimpleObjectProperty<Person>` that can be 'observed' (e.g. the UI can be bound to this object so that the UI automatically updates when the focus person changes).
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * stores a `CommandHistory` object that keeps track of the commands a user inputs during runtime. This is exposed to the outside as a `ReadOnlyCommandHistory` object.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
@@ -210,10 +211,6 @@ Sorting is facilitated by `SortCommand` and `SortCommandParser`, following these
 The sequence diagram below shows how the sort operation works:
 <puml src="diagrams/SortSequenceDiagram.puml" width="100%" />
 
-The activity diagram below depicts the execution flow of the sort command:
-<puml src="diagrams/SortActivityDiagram.puml" width="100%" />
-
-
 ### Filter Feature
 The filtering mechanism is facilitated by `FilterCommand` and `FilterCommandParser`, following these steps:
 
@@ -224,7 +221,7 @@ The filtering mechanism is facilitated by `FilterCommand` and `FilterCommandPars
     * Verifies no input exists between "filter" and the first prefix
     * Confirms no empty tags are present
     * Validates all tag names are alphanumeric and at most 30 characters
-
+<br>
 3. **Model update**: `FilterCommand#execute()` invokes `Model#updateFilteredPersonList(predicate)` to apply the filtering operation.
 
 4. **Filtering execution**: The model updates its filtered contact list by applying the `TagsContainTagPredicate`, which matches any contact whose tags contain at least one of the specified tags (case-insensitive matching).
@@ -299,13 +296,14 @@ The sequence diagram below shows how the edit operation works:
 ### Command Recall Feature
 The repeat mechanism is facilitated by `CommandHistory` Model and `LogicManager`.
 
-The Sequence diagram for a NextCommand Operation
+The Sequence diagram for a `getPreviousCommand` Operation:
+Sequence is similar for `getNextCommand` but in reverse.
 
 1. **Key Pressed**: `CommandBox` handles the event with a call to `navigateCommandHistory(x)` with `x` being '-1' for previous command, and `1' for next command in history.
 
 2. **Command Bubbles Down**: A series of function calls are then passed through the Logic Component and the Model Component
 
-3. **Get Last Nth Command**: `CommandHistory` gets the last nth command based on its current context of `currCommandIndex` and returns the respective string value of the command saved in history.
+3. **Get Last Nth Command**: `CommandHistory` gets the last nth command based on its current value of `currCommandIndex` and returns the respective string value of the command saved in history. Subsequently, `currCommandIndex` is incremented till `n` (where `n` is the current size of the history list)
 
 4. **Update CommandBox**: Target Command String gets returned back and `CommandBox` updates its text field to show the command, along with setting the cursor to end of line.
 
@@ -570,24 +568,34 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
    
   * 1a. User does not provide both field and order parameters.
+
     * 1a1. System shows an error message.
+
       Use case resumes at step 1.
 
   * 1b. User provides input between "sort" and the first prefix.
+
     * 1b1. System shows an error message.
+
       Use case resumes at step 1.
 
   * 1c. User provides duplicate prefixes.
+
     * 1c1. System shows an error message.
+
       Use case resumes at step 1.
 
   * 2a. The provided field is invalid (not "name" or "tag").
+
     * 2a1. System shows an error message.
+
       Use case resumes at step 1.
 
   * 2b. The provided order is invalid (not "asc", "desc", "ascending", or "descending").
+
     * 2b1. System shows an error message.
-    Use case resumes at step 1.
+
+      Use case resumes at step 1.
 
 **Use case UC05 - Filter contacts by tags**
 
@@ -602,24 +610,34 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
   * 1a. User does not provide any tag parameters.
+
     * 1a1. System shows an error message.
+
       Use case resumes at step 1.
 
   * 1b. User provides input between "filter" and the first tag prefix.
+
     * 1b1. System shows an error message.
+
       Use case resumes at step 1.
 
   * 2a. One or more tags are empty.
-    * 2b1. System shows an error message.
+
+    * 2a1. System shows an error message.
+
       Use case resumes at step 1.
-  
+
   * 2b. One or more tags contain non-alphanumeric characters
+
     * 2b1. System shows an error message.
+
       Use case resumes at step 1.
 
   * 3a. No contacts match the specified tags.
+
     * 3a1. System displays an empty list with a count of 0 contact.
-    Use case ends.
+
+      Use case ends.
 
 **Use case: UC06 - List contacts**
 
@@ -819,9 +837,9 @@ testers are expected to do more *exploratory* testing.
 ### Listing all Contacts
 1.  List all contacts in FastCard.
 
-   -   Prerequisite: At least one contact exists in FastCard.
+    -  Prerequisite: At least one contact exists in FastCard.
 
-   -   Test case: `list`<br>
+    -  Test case: `list`<br>
        Expected: All contacts are displayed.
 
 ### Deleting a Contact
@@ -1063,24 +1081,30 @@ testers are expected to do more *exploratory* testing.
 ### Saving Data
 
 1. Dealing with missing/corrupted data files
-   Precondition: `FastCard` application is closed
+   - Precondition: `FastCard` application is closed
 
-   1. Test case (Application Launch with Missing Data File):<br>
-      Steps:
-         * Navigate to the application's `data` folder
-         * Delete `fastcard.json` if the file exists
-         * Launch `FastCard` again
-      Expected: Default list of contacts shown.
+   - Test case (Application Launch with Missing Data File):<br>
+       * Navigate to the application's `data` folder
+       * Delete `fastcard.json` if the file exists
+       * Launch `FastCard` again
+
+         Expected: Default list of contacts shown.
    
-   1. Test case (Corrupted data file):<br>
-      Steps:
-         * Navigate to the application's `data` folder
-         * Delete the name of any contact and save your changes
-         * Launch `FastCard` again
-      Expected: No contacts shown.
+   - Test case (Corrupted data file):<br>
+       * Navigate to the application's `data` folder
+       * Delete the name of any contact and save your changes
+       * Launch `FastCard` again
+      
+         Expected: No contacts shown.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ### Appendix: Planned Enhancements
 
 Team size: 5
+
+1. **Make filter error messages more error-specific.**
+Some errors from the filter command can be made more specific. We plan to make the error message mention the reason for the failure (invalid tag, empty tag, etc).
+
+2. **Sort only by the filtered list.**
+The `sort` command currently acts on the global list and not the currently filtered list shown to the user. We plan to modify it such that the `sort` command only sorts the currently filtered list.
