@@ -402,7 +402,16 @@ Updates an existing contact's information by either their name or position numbe
   * **Email uniqueness** - Each email address must be unique across all contacts (except for placeholder emails like `unknown@example.com`). You cannot change a contact's email to one that's already used by another contact
   * **Existing values are replaced** - For name, phone, email, company, and detail fields, your new input completely replaces the old information
   * **Detail field** (`d/`) - A note field with a maximum of 300 characters. Can be left empty to clear existing detail
-  * **Tags are flexible** - You can overwrite all tags (`t/`), add to existing tags (`t+/`), or remove specific tags (`t-/`)
+
+<box type="tip" seamless>
+
+   Pro Tips:
+  * **Use detail field for context** - Add meeting notes, preferences, or important reminders about contacts (max 300 characters)
+  * **Clear detail field** - Use `edit INDEX d/` with nothing after `d/` to remove existing detail
+
+</box>
+
+  * **Flexible tag management** - You can overwrite all tags (`t/`), add to existing tags (`t+/`), or remove specific tags (`t-/`)
   * **Tag operations cannot be mixed** - You cannot use `t/` together with `t+/` or `t-/` in the same command (conflicting tag operations)
   * **Removing non-existent tags** - Using `t-/` to remove a tag that doesn't exist will show an error listing the non-existent tags
   * **Empty tag names not allowed** - You must provide at least one tag name after `t/`, `t+/`, or `t-/`
@@ -421,6 +430,14 @@ To keep existing tags while adding new ones, use `t+/` instead.
 When you use `t-/` to delete tags, the search is case-insensitive. Be mindful of this to avoid unintentionally deleting tags.
   * Example: Contact has `[Client][vendor]` → `edit John t-/client` → Result: `[vendor]` (`[Client]` is deleted despite capital 'C')
 
+</box>
+
+<box type="tip" seamless>
+
+   Pro Tips:
+  * **Use `t+/` and `t-/` for gradual tag management** - Add or remove tags without worrying about losing existing ones
+  * **Combine add and delete** - Change contact roles in one command: `edit John t+/vendor t-/client`
+  
 </box>
 
 **When to use this:**
@@ -518,17 +535,6 @@ edit 2 t+/partner t-/client
   * All other tags remain unchanged
 
 &rarr; Useful when contact's role changes (e.g., from client to partner)
-
-<box type="tip" seamless>
-
-   Pro Tips:
-  * **Use `t+/` and `t-/` for gradual tag management** - Add or remove tags without worrying about losing existing ones
-  * **View before editing** - Use `find` or `list` to see current tags before making changes
-  * **Combine add and delete** - Change contact roles in one command: `edit John t+/vendor t-/client`
-  * **Use detail field for context** - Add meeting notes, preferences, or important reminders about contacts (max 300 characters)
-  * **Clear detail field** - Use `edit INDEX d/` with nothing after `d/` to remove existing detail
-
-</box>
 
 ### Searching for contacts: `find`
 Quickly finds contacts whose names or companies match the keywords you provide.
