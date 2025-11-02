@@ -395,14 +395,27 @@ Updates an existing contact's information by either their name or position numbe
   * All fields are optional, but you must provide at least one
 
 **What you need to know:**
-  * **Edit by index** - Use the number shown next to the contact (must be 1, 2, 3, etc.)
+  * **Edit by index** - Use the number shown next to the contact (must be 1, 2, 3, etc.). Index starts at 1, not 0
   * **Edit by name** - Name matching is case-insensitive (`john doe` = `John Doe`)
   * **Full Name Required** - If editing by name, you need to provide the contact's full name (e.g., `edit Sarah` will not edit `Sarah Chen`'s contact)
   * **Multiple contacts with the same name** - FastCard will show all matches and ask you to edit by index instead
   * **Email uniqueness** - Each email address must be unique across all contacts (except for placeholder emails like `unknown@example.com`). You cannot change a contact's email to one that's already used by another contact
   * **Existing values are replaced** - For name, phone, email, company, and detail fields, your new input completely replaces the old information
-  * **Detail field** (`d/`) - A note field with a maximum of 300 characters. Can be left empty to clear existing detail
-  * **Tags are flexible** - You can overwrite all tags (`t/`), add to existing tags (`t+/`), or remove specific tags (`t-/`)
+  * **Detail field** (`d/`) - A note field with a maximum of 300 characters. Can be left empty to clear existing detail. Notice the note can only be viewed in the detail view (see [`view` command](#viewing-details-view)).
+
+<box type="tip" seamless>
+
+   Pro Tips:
+  * **Use detail field for context** - Add meeting notes, preferences, or important reminders about contacts
+  * **Clear detail field** - Use `edit INDEX d/` with nothing after `d/` to remove existing detail
+
+</box>
+
+  * **Using slash `/` in values** - Although using `/` is generally allowed for company and detail, it is likely to cause unintended behavior if specific format for prefixes such as " p/" " e/" appear in the value
+  * **Flexible tag management** - You can overwrite all tags (`t/`), add to existing tags (`t+/`), or remove specific tags (`t-/`)
+  * **Tag operations cannot be mixed** - You cannot use `t/` together with `t+/` or `t-/` in the same command (conflicting tag operations)
+  * **Removing non-existent tags** - Using `t-/` to remove a tag that doesn't exist will show an error listing the non-existent tags
+  * **Empty tag names not allowed** - You must provide at least one tag name after `t/`, `t+/`, or `t-/`
 
 <box type="warning" seamless>
 
@@ -413,6 +426,19 @@ When you use `t/` to edit tags, it replaces ALL existing tags with the new ones 
 
 To keep existing tags while adding new ones, use `t+/` instead.
 
+**⚠️ Warning: Tag deletion with `t-/` is case-insensitive**
+
+When you use `t-/` to delete tags, the search is case-insensitive. Be mindful of this to avoid unintentionally deleting tags.
+  * Example: Contact has `[Client][vendor]` → `edit John t-/client` → Result: `[vendor]` (`[Client]` is deleted despite capital 'C')
+
+</box>
+
+<box type="tip" seamless>
+
+   Pro Tips:
+  * **Use `t+/` and `t-/` for gradual tag management** - Add or remove tags without worrying about losing existing ones
+  * **Combine add and delete** - Change contact roles in one command: `edit John t+/vendor t-/client`
+  
 </box>
 
 **When to use this:**
@@ -510,26 +536,6 @@ edit 2 t+/partner t-/client
   * All other tags remain unchanged
 
 &rarr; Useful when contact's role changes (e.g., from client to partner)
-
-<box type="tip" seamless>
-
-   Pro Tips:
-  * **Use `t+/` and `t-/` for gradual tag management** - Add or remove tags without worrying about losing existing ones
-  * **View before editing** - Use `find` or `list` to see current tags before making changes
-  * **Combine add and delete** - Change contact roles in one command: `edit John t+/vendor t-/client`
-  * **Use detail field for context** - Add meeting notes, preferences, or important reminders about contacts (max 300 characters)
-  * **Clear detail field** - Use `edit INDEX d/` with nothing after `d/` to remove existing detail
-
-</box>
-
-**Common Mistakes:**
-  * `edit John Doe` &rarr; No fields provided (you must include at least one field to update)
-  * `edit 0 p/91234567` &rarr; Invalid index (index starts at 1, not 0)
-  * `edit 1 e/existing@email.com` &rarr; Trying to use an email that already belongs to another contact (you'll see "This email already exists in the contact book")
-  * `edit 1 t/client t+/priority` &rarr; Cannot mix `t/` with `t+/` or `t-/` (conflicting tag operations)
-  * `edit 1 t-/colleague` when contact doesn't have `[colleague]` tag &rarr; FastCard will show an error listing non-existent tags
-  * `edit 1 t+/` or `edit 1 t-/` &rarr; Empty tag name (you must provide at least one tag after `t+/` or `t-/`)
-  * `edit 1 d/[very long text over 300 characters]` &rarr; Detail field exceeds maximum length of 300 characters
 
 ### Searching for contacts: `find`
 Quickly finds contacts whose names or companies match the keywords you provide.
@@ -694,6 +700,8 @@ Arranges your contacts in alphabetical order based on the field you choose - use
 
 <box type="warning" seamless>
 
+**⚠️ Warning: Sort applies to all contacts, not filtered lists**
+
 The `sort` command works on the overall contact list, not just a filtered list from `find` or `filter`.
 
 </box>
@@ -725,7 +733,7 @@ Permanently removes a contact from FastCard - use with caution as this cannot be
 
 <box type="warning" seamless>
 
-**   WARNING: Permanent Deletion**
+**⚠️ Warning: Permanent Deletion**
 
 Deleted contacts are **permanently removed** and cannot be recovered. Double-check you're deleting the correct contact before pressing Enter.
 
@@ -827,8 +835,9 @@ view 1
 
 <box type="warning" seamless>
 
-**   WARNING: Potential Stale Information**
-  * When you edit the currently focused Contact, the information may become stale! 
+**⚠️ Warning: Potential Stale Information**
+
+When you edit the currently focused Contact, the information may become stale!
   * Simply ensure that you refresh calling `view INDEX` again!
 
 </box>
@@ -897,9 +906,9 @@ This allows users to back up or view their contact list in spreadsheet applicati
 
 <box type="warning" seamless>
 
-**   WARNING: Potential Overwrite!**
-* If a file with the same name already exists on your Desktop,
-  it will be **overwritten without confirmation**.
+**⚠️ Warning: Potential Overwrite**
+
+If a file with the same name already exists on your Desktop, it will be **overwritten without confirmation**.
 
 </box>
 
@@ -951,7 +960,9 @@ Permanently deletes every contact from FastCard - use only when starting complet
 
 <box type="warning" seamless>
 
-**   WARNING: This permanently deletes ALL contacts from FastCard. This cannot be undone.**
+**⚠️ Warning: This permanently deletes ALL contacts from FastCard**
+
+This action cannot be undone.
 
 Before using `clear`:
   * **Backup your data** - Copy the `fastcard.json` file from your FastCard data folder
@@ -1047,14 +1058,18 @@ FastCard saves your contacts automatically every time you make a change.
 Your contact data is stored in a file called `fastcard.json` located in `[JAR file location]/data/`.
 Advanced users are welcome to update data directly by editing that data file.
 
-**   WARNING: Manual editing is risky**
+</box>
 
-**If you edit this file incorrectly:**
+<box type="warning" seamless>
+
+**⚠️ Warning: Manual editing is risky**
+
+If you edit this file incorrectly:
   * FastCard will delete **ALL** your data and start with an empty file
   * The app may behave unpredictably
   * You could lose all your contacts permanently
 
-**Before editing:**
+Before editing:
   * Make a backup copy of the file
   * Only proceed if you understand JSON file format
   * Test with a small change first
