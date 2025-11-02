@@ -699,6 +699,8 @@ Arranges your contacts in alphabetical order based on the field you choose - use
 
 <box type="warning" seamless>
 
+**⚠️ Warning: Sort applies to all contacts, not filtered lists**
+
 The `sort` command works on the overall contact list, not just a filtered list from `find` or `filter`.
 
 </box>
@@ -730,7 +732,7 @@ Permanently removes a contact from FastCard - use with caution as this cannot be
 
 <box type="warning" seamless>
 
-**   WARNING: Permanent Deletion**
+**⚠️ Warning: Permanent Deletion**
 
 Deleted contacts are **permanently removed** and cannot be recovered. Double-check you're deleting the correct contact before pressing Enter.
 
@@ -832,8 +834,9 @@ view 1
 
 <box type="warning" seamless>
 
-**   WARNING: Potential Stale Information**
-  * When you edit the currently focused Contact, the information may become stale! 
+**⚠️ Warning: Potential Stale Information**
+
+When you edit the currently focused Contact, the information may become stale!
   * Simply ensure that you refresh calling `view INDEX` again!
 
 </box>
@@ -902,9 +905,9 @@ This allows users to back up or view their contact list in spreadsheet applicati
 
 <box type="warning" seamless>
 
-**   WARNING: Potential Overwrite!**
-* If a file with the same name already exists on your Desktop,
-  it will be **overwritten without confirmation**.
+**⚠️ Warning: Potential Overwrite**
+
+If a file with the same name already exists on your Desktop, it will be **overwritten without confirmation**.
 
 </box>
 
@@ -956,7 +959,9 @@ Permanently deletes every contact from FastCard - use only when starting complet
 
 <box type="warning" seamless>
 
-**   WARNING: This permanently deletes ALL contacts from FastCard. This cannot be undone.**
+**⚠️ Warning: This permanently deletes ALL contacts from FastCard**
+
+This action cannot be undone.
 
 Before using `clear`:
   * **Backup your data** - Copy the `fastcard.json` file from your FastCard data folder
@@ -1052,14 +1057,18 @@ FastCard saves your contacts automatically every time you make a change.
 Your contact data is stored in a file called `fastcard.json` located in `[JAR file location]/data/`.
 Advanced users are welcome to update data directly by editing that data file.
 
-**   WARNING: Manual editing is risky**
+</box>
 
-**If you edit this file incorrectly:**
+<box type="warning" seamless>
+
+**⚠️ Warning: Manual editing is risky**
+
+If you edit this file incorrectly:
   * FastCard will delete **ALL** your data and start with an empty file
   * The app may behave unpredictably
   * You could lose all your contacts permanently
 
-**Before editing:**
+Before editing:
   * Make a backup copy of the file
   * Only proceed if you understand JSON file format
   * Test with a small change first
