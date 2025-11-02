@@ -406,11 +406,12 @@ Updates an existing contact's information by either their name or position numbe
 <box type="tip" seamless>
 
    Pro Tips:
-  * **Use detail field for context** - Add meeting notes, preferences, or important reminders about contacts. 
+  * **Use detail field for context** - Add meeting notes, preferences, or important reminders about contacts
   * **Clear detail field** - Use `edit INDEX d/` with nothing after `d/` to remove existing detail
 
 </box>
 
+  * **Using slash `/` in values** - Although using `/` is generally allowed for company and detail, it is likely to cause unintended behavior if specific format for prefixes such as " p/" " e/" appear in the value
   * **Flexible tag management** - You can overwrite all tags (`t/`), add to existing tags (`t+/`), or remove specific tags (`t-/`)
   * **Tag operations cannot be mixed** - You cannot use `t/` together with `t+/` or `t-/` in the same command (conflicting tag operations)
   * **Removing non-existent tags** - Using `t-/` to remove a tag that doesn't exist will show an error listing the non-existent tags
