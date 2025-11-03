@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -140,6 +141,12 @@ public class MainWindow extends UiPart<Stage> {
 
         // Setting Split Pane divider position after hydration
         mainSplitpane.setDividerPosition(0, 1.0);
+        mainSplitpane.getParent().layoutBoundsProperty()
+                .addListener((obs, oldBounds, newBounds) -> {
+                    if (!detailsPane.isVisible()) {
+                        Platform.runLater(() -> mainSplitpane.setDividerPosition(0, 1.0));
+                    }
+                });
     }
 
     /**

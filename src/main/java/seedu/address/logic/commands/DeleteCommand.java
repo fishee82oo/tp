@@ -103,6 +103,9 @@ public class DeleteCommand extends Command {
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deletePerson(personToDelete);
+        if (model.getFocusedPerson().get() != null && model.getFocusedPerson().get().equals(personToDelete)) {
+            model.updateFocusedPerson(-1);
+        }
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
     }
 
@@ -126,6 +129,9 @@ public class DeleteCommand extends Command {
 
         Person personToDelete = matchingPersons.get(0);
         model.deletePerson(personToDelete);
+        if (model.getFocusedPerson().get() != null && model.getFocusedPerson().get().equals(personToDelete)) {
+            model.updateFocusedPerson(-1);
+        }
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
     }
 }

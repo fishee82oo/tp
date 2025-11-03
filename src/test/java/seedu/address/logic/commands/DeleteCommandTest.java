@@ -34,6 +34,7 @@ public class DeleteCommandTest {
     @Test
     public void execute_validNameUnfilteredList_success() {
         Person personToDelete = model.getFilteredPersonList().get(0);
+        model.updateFocusedPerson(0);
         DeleteCommand deleteCommand = new DeleteCommand(personToDelete.getName());
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
                 Messages.format(personToDelete));
@@ -42,6 +43,20 @@ public class DeleteCommandTest {
         expectedModel.deletePerson(personToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_validNameDiffFocus_noFocusChange() {
+        Person personToDelete = model.getFilteredPersonList().get(0);
+        model.updateFocusedPerson(2); // Focused Person null
+        DeleteCommand deleteCommand = new DeleteCommand(personToDelete.getName());
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
+                Messages.format(personToDelete));
+
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.deletePerson(personToDelete);
+
+        assertEquals(model.getFilteredPersonList().get(2), model.getFocusedPerson().get());
     }
 
     @Test
@@ -57,6 +72,7 @@ public class DeleteCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Person personToDelete = model.getFilteredPersonList().get(0);
+        model.updateFocusedPerson(0);
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,

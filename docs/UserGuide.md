@@ -382,6 +382,54 @@ add n/Mike Kumar p/87654321 e/mike@company.com c/ABC Industries
   * `add n/David D/O Tan p/12345678 c/Shopee e/12345678@gmail.com` &rarr; Using banned sign `/` in the name field
 
 
+### Viewing details: `view`
+
+Toggles the Detail Pane to show the focused user's details (except tags).
+
+![FastCard UI](images/Ui_detail.png)
+
+**Format:**
+* `view INDEX`
+
+**Examples:**
+**Example 1: View Details of contact in index 1**
+```
+view 1
+```
+**You'll see:**
+* Information about the specific user
+* details added using the `d/` field through the [`edit`](#updating-contact-information-edit) command
+* Detail Pane toggle to view
+
+**When should you use this?**
+* When you want to review meeting notes or preferences you've saved for a contact
+* When you want to copy a quick reference to the information to transfer to another application
+* Buttons corresponding to each core information is displayed
+* Clicking on the button will add the information to your clipboard for ease of transfer
+
+
+<box type="info" seamless>
+<b>Why isn't this a command instead?</b>
+
+- While our application aims to be mainly command focused for familiar users
+- We acknowledge the efficiency and accuracy of a single click action in this case
+- Especially since the expected use case is for extended interactions off app (which likely takes clicks!)
+
+</box>
+
+<box type="warning" seamless>
+<b>Dragging into view</b>
+
+- Use only the `view` command to toggle the visibility of the detail pane.
+- Manual hide or show by dragging, may cause the information to not appear on the pane as expected.
+
+- (Note) Dragging is useful ONLY for resizing the visible detail pane so that the information shown can be displayed in its entirety
+
+- Quick fixes: Simply run `view` once or twice to reset the detail pane orientation! 
+
+
+</box>
+
 ### Updating contact information: `edit`
 
 Updates an existing contact's information by either their name or position number in the list.
@@ -809,50 +857,7 @@ Multiple contacts named John Doe found. Please specify the index to delete, e.g.
   * `delete 0` &rarr; Invalid index (index starts at 1, not 0)
   * `delete 5` when only 3 contacts shown &rarr; Index out of range (must be within displayed list)
 
-### Viewing details: `view`
 
-Toggles the Detail Pane showing specified user in detail, including any notes stored in the detail field.
-
-![FastCard UI](images/Ui_detail.png)
-
-**Format:**
-  * `view INDEX`
-
-**Examples:**
-**Example 1: View Details of contact in index 1**
-```
-view 1
-```
-**You'll see:**
-  * The full information about the user (if it's too long to be shown on the main card)
-  * Any notes or details added using the `d/` field in the edit command
-  * (If Focus Contact has not been selected yet) -> Shows a guiding message.
-  * Detail Pane toggle to view (if not already visible)
-
-**When should you use this?**
-  * When you want to view the full version of the contact info including detail notes
-  * When you want to review meeting notes or preferences you've saved for a contact
-  * When you want a quick reference to the information to transfer to another application
-  * Buttons corresponding to each core information is displayed 
-  * Clicking on the button will add the information to your clipboard for ease of transfer
-
-<box type="warning" seamless>
-
-**⚠️ Warning: Potential Stale Information**
-
-When you edit the currently focused Contact, the information may become stale!
-  * Simply ensure that you refresh calling `view INDEX` again!
-
-</box>
-
-<box type="info" seamless>
-<b>Why isn't this a command instead?</b>
-
-  - While our application aims to be mainly command focused for familiar users
-  - We acknowledge the efficiency and accuracy of a single click action in this case
-  - Especially since the expected use case is for extended interactions off app (which likely takes clicks!)
-
-</box>
 
 ### Recalling previous commands - Command History
 
@@ -965,9 +970,7 @@ Permanently deletes every contact from FastCard - use only when starting complet
 
 <box type="warning" seamless>
 
-**⚠️ Warning: This permanently deletes ALL contacts from FastCard**
-
-This action cannot be undone.
+**⚠️ WARNING: This cannot be undone.**
 
 Before using `clear`:
   * **Backup your data** - Copy the `fastcard.json` file from your FastCard data folder
@@ -981,7 +984,7 @@ Before using `clear`:
 
 **When NOT to use this:**
   * Removing specific outdated contacts - Use [`delete`](#removing-a-contact-delete) instead
-  * Cleaning up a few contacts - Use [`filter`](#filtering-contacts-filter) or [`find`](#searching-for-contacts-by-name-find) then delete individually
+  * Cleaning up a few contacts - Use [`filter`](#filtering-contacts-filter) or [`find`](#searching-for-contacts-find) then delete individually
 
 **Example: Starting fresh after testing. (With a filled contact list)**
 ```
@@ -990,26 +993,30 @@ clear
 **You'll see:**
 ```
 This will delete all your contacts (action irreversible!)
-If you'd like to continue, confirm with input [clear <CONFIRM_WORD>]
+If you'd like to continue, confirm with input [clear CONFIRM]
 ```
-The <CONFIRM_WORD> will be shown to you in the feedback screen. 
+The full confirmed clear command will be shown to you in the feedback screen. 
 If you accept that the list will be irreversibly cleared, simply input as guided.
 ```
-clear <CONFIRM_WORD>
+clear CONFIRM
 ```
-Finally you'll see the empty list with the response:
+Finally, you'll see the empty list with the response:
 ```
 Contact book has been cleared!
 ```
+If instead you entered the confirmation word incorrectly e.g.:
+```
+clear something
+```
+You'll see the error message:
+```
+Improper Confirmation. Unchanged
+```
+If you are still certain that you want to clear everything. Simply type in the correct confirmation as mentioned above.
 
 **In the contact list:**
   * All contacts disappear immediately
   * You're left with a completely empty contact list
-
-&rarr; Removes all sample contacts you added while learning FastCard
-
-**Common mistakes:**
-  * Thinking you can undo &rarr; You can't - deletion is permanent
 
 ### Closing FastCard : `exit`
 
