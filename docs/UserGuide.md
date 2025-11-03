@@ -555,7 +555,7 @@ You can search by name, company, or both at the same time.
 * Supports **partial (substring)** matches of **name** – typing `Han` will find `Hans` or `Hannah`
 * Supports **keyword** matches of **company** - typing `Google` will find `Google` and `Google SG`
 * Both name and company searches can be combined (logical **AND**)
-    * `find n/Alice c/NUS` → finds contacts whose **name contains “Alice”** **and** whose **company contains “NUS”**
+    * `find n/Alice c/NUS` → finds contacts whose **name contains “Alice”** **AND** her **company contains “NUS”**
 * If only one prefix is provided, only that field is searched
 * The number of matching contacts will be displayed after searching
 * **Duplicate search is not allowed**
