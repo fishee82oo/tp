@@ -252,6 +252,8 @@ Quickly saves a contact with just their name and phone number - perfect when you
     * Note: The `/` character is **not supported** to accommodate official namings such as `Rahul s/o Kumar`.
     * Instead, you may use `.` or `-` in names if needed (e.g. `Rahul s.o. Kumar`, `Tan-Kumar`).
 * **Phone** (`p/`) - At least 3 digits, at most 20 digits
+  * If the phone number includes a region or country code, please represent the code using **three digits** 
+  * Example: `p/0658888000` means the added phone with region code `+65` from Singapore
 
 **What you need to know:**
   * The combination of name **AND** phone number must be unique, you can't add two people with the same name and phone number combination
@@ -314,6 +316,8 @@ Adds a contact with full information including name, phone, email, company, and 
     * Note: The `/` character is **not supported** to accommodate official namings such as `Rahul s/o Kumar`.
     * Instead, you may use `.` or `-` in names if needed (e.g. `Rahul s.o. Kumar`, `Tan-Kumar`).
   * **Phone** (`p/`) - At least 3 digits, at most 20 digits
+    * If the phone number includes a region or country code, please represent the code using **three digits**
+    * Example: `p/0658888000` means the added phone with region code `+65` from Singapore
   * **Email** (`e/`) - Valid email address (e.g., name@company.com)
     * We **do not recommend** entering `unknown@example.com`, as it is used internally as an `invisible` placeholder when you do not specify an email for your contact.
     * If you enter that specific value, you will not see the field in your FastCard interface.
