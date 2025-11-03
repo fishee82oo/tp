@@ -465,6 +465,7 @@ Updates an existing contact's information by either their name or position numbe
   * **Tag operations cannot be mixed** - You cannot use `t/` together with `t+/` or `t-/` in the same command (conflicting tag operations)
   * **Removing non-existent tags** - Using `t-/` to remove a tag that doesn't exist will show an error listing the non-existent tags
   * **Empty tag names not allowed** - You must provide at least one tag name after `t/`, `t+/`, or `t-/`
+  * **Duplicate tag names are ignored** - If a provided tag name matches an existing tag (case-insensitive), the command will run but no changes will be made to that tag
 
 <box type="warning" seamless>
 
