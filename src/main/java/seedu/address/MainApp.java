@@ -1,6 +1,7 @@
 package seedu.address;
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Optional;
 import java.util.logging.Logger;
@@ -86,11 +87,23 @@ public class MainApp extends Application {
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataLoadingException e) {
             logger.warning("Data file at " + storage.getAddressBookFilePath() + " could not be loaded."
-                    + " Will be starting with an empty Fast Card Contact Book."); // @Codecov [ignore]
+                    + " Will be starting with an empty FastCard Contact Book."); // @Codecov [ignore]
+            deleteInvalidDataFile(storage.getAddressBookFilePath());
             initialData = new AddressBook();
         }
 
         return new ModelManager(initialData, userPrefs);
+    }
+
+    private void deleteInvalidDataFile(Path dataFilePath) {
+        try {
+            if (Files.deleteIfExists(dataFilePath)) {
+                logger.info("Deleted invalid data file " + dataFilePath + ".");
+            }
+        } catch (IOException ioe) {
+            logger.warning("Failed to delete invalid data file " + dataFilePath + ": "
+                    + StringUtil.getDetails(ioe));
+        }
     }
 
     private void initLogging(Config config) {
