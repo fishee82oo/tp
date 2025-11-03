@@ -36,6 +36,9 @@ public class ViewCommand extends Command {
         } else {
             // Pass index to update focused Person using their index
             try {
+                if (targetIndex < 1) {
+                    throw new IndexOutOfBoundsException();
+                }
                 model.updateFocusedPerson(targetIndex - 1);
             } catch (IndexOutOfBoundsException e) {
                 throw new CommandException(MESSAGE_INDEX_NOT_FOUND);
