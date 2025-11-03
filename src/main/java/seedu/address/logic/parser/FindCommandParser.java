@@ -18,7 +18,9 @@ public class FindCommandParser implements Parser<FindCommand> {
     public FindCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_COMPANY);
-
+        //new lines added to fix the find bug - cannot have duplicate prefix
+        argMultimap.verifyNoDuplicatePrefixesFor(CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_COMPANY);
+        //line ends
         Optional<String> name = argMultimap.getValue(CliSyntax.PREFIX_NAME);
         Optional<String> company = argMultimap.getValue(CliSyntax.PREFIX_COMPANY);
 
