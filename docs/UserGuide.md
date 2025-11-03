@@ -1099,8 +1099,10 @@ Before editing:
   1. On your old computer, locate the `fastcard.json` file in `[JAR file location]/data/`.
   2. Copy this file to the other computer.
   3. Install FastCard on your other computer.
-  4. Replace the new `fastcard.json` file with your copied file.
-  5. Restart FastCard. All your contacts should appear.
+  4. Run FastCard once temporarily and enter the command `help`.
+  5. Close the temporary FastCard instance.
+  6. Replace the new `fastcard.json` file in the newly created `./data/` folder with the copied json file.
+  7. Restart FastCard. All your contacts should appear.
 
 **Q: Can I undo a command I just entered?** <br>
 **A**: No, FastCard doesn't have an undo feature. Commands take effect immediately and are saved automatically. Be especially careful with `delete` and `clear` commands.
