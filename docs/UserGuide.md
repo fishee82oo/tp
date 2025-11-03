@@ -748,13 +748,14 @@ Deleted contacts are **permanently removed** and cannot be recovered. Double-che
 - `delete INDEX`
 
 **What you need to provide:**
-  * **Either** - The contact's `NAME` (partial search is not supported)
-  * **Or** - The contact's `INDEX` (position number in the displayed list)
+  * **Either** - The contact's `NAME` (full name only as partial search is not supported)
+  * **Or** - The contact's `INDEX` (position number in the current displayed list)
 
 **What you need to know:**
   * **Delete by name or index** - Deleting by full name or index works similarly to the `edit` command
   * **Deletion is permanent** - There is no undo function
   * **Delete by name** - Name matching is case-insensitive (`john doe` = `John Doe`)
+  * **Prefix is not required** - Do not need to include `n/`
 
 **When to use this:** 
   * You want to remove outdated contacts
@@ -785,7 +786,7 @@ delete John Doe
 ```
 **If multiple John Doe exist, you'll see (depending on the number of John Doe contacts):**
 ```
-Multiple contacts named John Doe found. Please specify the index to delete.
+Multiple contacts named John Doe found. Please specify the index to delete, e.g. delete 1
 2 contact(s) listed!
 ```
 **In the contact list:**

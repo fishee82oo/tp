@@ -255,11 +255,9 @@ Deleting contacts is facilitated by `DeleteCommand` and `DeleteCommandParser`, f
 5. **Deletion and feedback**: Once a single target is identified, `Model#deletePerson(person)` removes it from storage, and the
    command returns a `CommandResult` summarizing the deleted contact.
 
-The sequence diagram below shows how the filter operation works:
+The sequence diagram below shows how the delete operation works:
 <puml src="diagrams/DeleteSequenceDiagram.puml" width="100%" />
 
-The activity diagram below depicts the execution flow of the filter command:
-<puml src="diagrams/DeleteActivityDiagram.puml" width="100%" />
 
 ### Edit Feature
 Editing contacts is facilitated by `EditCommand` and `EditCommandParser`, following these steps:
