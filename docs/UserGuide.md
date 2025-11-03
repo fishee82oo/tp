@@ -970,7 +970,7 @@ This allows users to back up or view their contact list in spreadsheet applicati
 <box type="info" seamless>
 
 **Want to migrate to another computer?** 
-- Simply copy the `addressbook.json` file from your FastCard data folder!
+- Simply copy the `fastcard.json` file from your FastCard data folder!
 - [How?](#faq)
 - The CSV file is to share the data generally.
 
