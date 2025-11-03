@@ -155,10 +155,11 @@ __Lets Start Fresh!__
 
 **Three Dots… = Repeat as needed**
 * Items with `…` can be used multiple times or not at all.<br>
-  Example: `[t/TAG]…​` means:
+  Example: `[t/TAG]…` means:
     * ` ` (no tags)
     * `t/client` (one tag)
-    * `t/client t/highPriority t/hotLead` (multiple tags, add as many as you want!)
+    * `t/client t/highPriority t/hotLead` (multiple tags allowed)
+* Items without `…` are to be used at most once per command
 
 **Order Doesn't Matter**
 * You can type the information in any order that makes sense to you.<br>
@@ -898,7 +899,7 @@ This allows users to back up or view their contact list in spreadsheet applicati
 <box type="info" seamless>
 
 **Want to migrate to another computer?** 
-- Simply copy the `addressbook.json` file from your FastCard data folder!
+- Simply copy the `fastcard.json` file from your FastCard data folder!
 - [How?](#faq)
 - The CSV file is to share the data generally.
 

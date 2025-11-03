@@ -822,7 +822,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   -   Download the jar file and copy into an empty folder
+   -   Download the jar file from [releases](https://github.com/AY2526S1-CS2103T-F11-4/tp/releases) and copy into an empty folder
 
    -   Double-click the jar file <br>
        Expected: Shows the GUI with a set of sample candidates. The window size may not be optimum.
