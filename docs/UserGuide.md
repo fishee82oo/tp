@@ -624,7 +624,7 @@ Shows only contacts that have specific tags - perfect for viewing contacts by ca
   * Tags specified must be alphanumeric and at most 30 characters
   * Leading and trailing whitespaces are trimmed
   * If no contacts contain any of the specified tags, an empty contact list will be shown
-  * The global contact list shown by the `list` command will be filtered, and not the currently displayed contact list
+  * The filter always works on the complete contact list (not just the currently displayed contacts). If you have an active filter, a new filter will replace it entirely
   * Filtering an empty contact list will still result in an empty contact list
 
 **When to use this:**
