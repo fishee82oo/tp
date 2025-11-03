@@ -155,10 +155,11 @@ __Lets Start Fresh!__
 
 **Three Dots… = Repeat as needed**
 * Items with `…` can be used multiple times or not at all.<br>
-  Example: `[t/TAG]…​` means:
+  Example: `[t/TAG]…` means:
     * ` ` (no tags)
     * `t/client` (one tag)
-    * `t/client t/highPriority t/hotLead` (multiple tags, add as many as you want!)
+    * `t/client t/highPriority t/hotLead` (multiple tags allowed)
+* Items without `…` are to be used at most once per command
 
 **Order Doesn't Matter**
 * You can type the information in any order that makes sense to you.<br>
