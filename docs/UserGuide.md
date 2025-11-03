@@ -331,6 +331,10 @@ Adds a contact with full information including name, phone, email, company, and 
   * Each email address must be unique across all contacts (except for placeholder emails like `unknown@example.com`)
   * All fields except tags are required
   * Add multiple tags by repeating `t/` (e.g., `t/client t/priority`)
+  * If you want to include remarks or detailed notes (using the `d/` prefix), please do so after the contact has been created via the `edit`
+    command
+    * This design helps minimize typing during contact creation, especially for add when you have multiple input fields
+    * Once the contact is confirmed to be valid, you can conveniently add extra details like notes or descriptions through `edit`
 
 **When to use this:**
   * You have all contact information ready to enter.
