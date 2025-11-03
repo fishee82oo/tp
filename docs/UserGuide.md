@@ -619,7 +619,7 @@ Shows only contacts that have specific tags - perfect for viewing contacts by ca
     * Specifying the same tag multiple times will be treated as if it were specified once
   * Tags are not case-sensitive (`t/client` = `t/CLIENT`)
   * You should only specify tags (specifying other parameters is invalid, e.g., `filter t/colleague n/John`)
-  * You may list the tags in any order.
+  * You may list the tags in any order
   * The exact tag name must match (e.g., `client` won't find contacts tagged with `clients`)
   * Tags specified must be alphanumeric and at most 30 characters
   * Leading and trailing whitespaces are trimmed
@@ -685,7 +685,7 @@ Arranges your contacts in alphabetical order based on the field you choose - use
 **What you need to know:**
   * You should specify both the field and the order only (Specifying other parameters is invalid)
   * You should only specify one field and one order
-  * Field and order are not case-sensitive. (`NAME = name`, `ASC` = `asc`)
+  * Field and order are not case-sensitive (`NAME = name`, `ASC` = `asc`)
   * Contacts without the sorted field appear at the start (for ascending order) or end (for descending order)
   * Leading and trailing whitespaces are trimmed
   * Sorting permanently reorders your contacts (Reloading FastCard will preserve the ordering of the contacts you sorted)
