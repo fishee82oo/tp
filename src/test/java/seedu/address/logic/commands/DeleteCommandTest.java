@@ -46,6 +46,20 @@ public class DeleteCommandTest {
     }
 
     @Test
+    public void execute_validNameDiffFocus_noFocusChange() {
+        Person personToDelete = model.getFilteredPersonList().get(0);
+        model.updateFocusedPerson(2); // Focused Person null
+        DeleteCommand deleteCommand = new DeleteCommand(personToDelete.getName());
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
+                Messages.format(personToDelete));
+
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.deletePerson(personToDelete);
+
+        assertEquals(model.getFilteredPersonList().get(2), model.getFocusedPerson().get());
+    }
+
+    @Test
     public void execute_nameNotInAddressBook_throwsCommandException() {
         Name nameNotInAddressBook = new Name("NONAME");
         DeleteCommand deleteCommand = new DeleteCommand(nameNotInAddressBook);
