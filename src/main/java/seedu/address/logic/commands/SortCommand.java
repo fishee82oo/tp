@@ -18,14 +18,14 @@ public class SortCommand extends Command {
 
     public static final String COMMAND_WORD = "sort";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": sorts all contact(s) in contact list "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": sorts all contacts in the contact list "
             + "based on the sorting comparator passed in.\n"
             + "Parameters: f/[FIELD] o/[ORDER]\n"
             + "Example: " + COMMAND_WORD + " f/name o/asc\n"
             + "Valid fields: name, tag\n"
             + "Valid orderings: asc, desc";
 
-    public static final String MESSAGE_SUCCESS = "Sorted all contact(s) by %s in %s order";
+    public static final String MESSAGE_SUCCESS = "Sorted all contacts by %s in %s order";
 
     private static final Logger logger = LogsCenter.getLogger(SortCommand.class);
 
