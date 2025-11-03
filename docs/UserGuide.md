@@ -383,7 +383,7 @@ add n/Mike Kumar p/87654321 e/mike@company.com c/ABC Industries
 
 ### Viewing details: `view`
 
-Toggles the Detail Pane showing specified user in detail (except tags).
+Toggles the Detail Pane to show the focused user's details (except tags).
 
 ![FastCard UI](images/Ui_detail.png)
 
