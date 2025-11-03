@@ -248,7 +248,7 @@ Quickly saves a contact with just their name and phone number - perfect when you
 **Format:** `addbasic n/NAME p/PHONE`
 
 **What you need to provide:**
-* **Name** (`n/`) - Full name (letters, numbers, spaces, `.`, and `-` allowed)
+* **Name** (`n/`) - Full name (letters, numbers, spaces, `.`, and `-` allowed), at most 50 characters
     * Note: The `/` character is **not supported** to accommodate official namings such as `Rahul s/o Kumar`.
     * Instead, you may use `.` or `-` in names if needed (e.g. `Rahul s.o. Kumar`, `Tan-Kumar`).
 * **Phone** (`p/`) - At least 3 digits, at most 20 digits
@@ -310,7 +310,7 @@ Adds a contact with full information including name, phone, email, company, and 
 **Format:** `add n/NAME p/PHONE e/EMAIL c/COMPANY [t/TAG]…`
 
 **What you need to provide:**
-  * **Name** (`n/`) - Full name (letters, numbers, spaces, `.`, and `-` allowed)
+  * **Name** (`n/`) - Full name (letters, numbers, spaces, `.`, and `-` allowed), at most 50 characters
     * Note: The `/` character is **not supported** to accommodate official namings such as `Rahul s/o Kumar`.
     * Instead, you may use `.` or `-` in names if needed (e.g. `Rahul s.o. Kumar`, `Tan-Kumar`).
   * **Phone** (`p/`) - At least 3 digits, at most 20 digits
