@@ -45,6 +45,7 @@ public class ClearCommand extends Command {
             return new CommandResult(MESSAGE_EMPTY_ADDRESS_BOOK);
         }
 
+        model.updateFocusedPerson(-1);
         model.setAddressBook(new AddressBook());
         return new CommandResult(MESSAGE_SUCCESS);
     }

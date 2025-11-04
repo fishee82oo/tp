@@ -16,7 +16,7 @@
     <Insets top="20" right="30" left="10" bottom="10" />
   </padding>
 
-  <Label fx:id="unknownLabel" styleClass="detailUnknownLabel" wrapText="true" text="Please select target with 'view [CONTACT_INDEX]'" visible="false" VBox.vgrow="ALWAYS"/>
+  <Label fx:id="unknownLabel" styleClass="detailUnknownLabel" wrapText="true" text="Please select target with 'view [CONTACT_INDEX]'" visible="true" VBox.vgrow="ALWAYS"/>
   <Label fx:id="copyGuideLabel" styleClass="detailCopyLabel" text="click to copy" VBox.vgrow="ALWAYS" textAlignment="CENTER"/>
 
   <GridPane fx:id="detailGrid" hgap="10" vgap="10" VBox.vgrow="ALWAYS" minWidth="230">
@@ -43,7 +43,7 @@
 
   <VBox VBox.vgrow="ALWAYS">
     <Region VBox.vgrow="ALWAYS" />
-    <Label text="If recently edited, please select again to refresh!" wrapText="true" styleClass="detailAdviceLabel"/>
+    <Label text="Tags are not shown here: Toggle View to see in main screen" wrapText="true" styleClass="detailAdviceLabel"/>
     <Label text="Detail View" />
     <Label text="Type [view] to toggle" />
   </VBox>

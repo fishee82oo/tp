@@ -204,12 +204,14 @@ Sorting is facilitated by `SortCommand` and `SortCommandParser`, following these
 3. **Model update**: `SortCommand` invokes `Model#sortPersons(comparator)` to trigger the sorting operation.
 
 4. **Sorting execution**: The sort operation cascades through:
-    * `Model#sortPersons(comparator)` &rarr; `AddressBook#sortPersons(comparator)` &rarr; `UniquePersonList#sortPersons(comparator)`
+    * `Model#sortPersons(comparator)` &rarr; `AddressBook#sort(comparator)` &rarr; `UniquePersonList#sort(comparator)`
 
 5. **Result**: A `CommandResult` is returned to display the success message to the user.
 
 The sequence diagram below shows how the sort operation works:
 <puml src="diagrams/SortSequenceDiagram.puml" width="100%" />
+
+**Note:** The lifeline for `SortCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
 
 ### Filter Feature
 The filtering mechanism is facilitated by `FilterCommand` and `FilterCommandParser`, following these steps:
@@ -230,6 +232,8 @@ The filtering mechanism is facilitated by `FilterCommand` and `FilterCommandPars
 
 The sequence diagram below shows how the filter operation works:
 <puml src="diagrams/FilterSequenceDiagram.puml" width="100%" />
+
+**Note:** The lifeline for `FilterCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
 
 The activity diagram below depicts the execution flow of the filter command:
 <puml src="diagrams/FilterActivityDiagram.puml" width="100%" />
