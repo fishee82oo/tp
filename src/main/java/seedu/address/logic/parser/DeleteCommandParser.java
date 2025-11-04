@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Name;
@@ -26,7 +27,10 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         try {
             Index index = ParserUtil.parseIndex(trimmedArgs);
             return new DeleteCommand(index);
-        } catch (ParseException ignored) {
+        } catch (ParseException parseException) {
+            if (isNumeric(trimmedArgs)) {
+                throw new ParseException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, parseException);
+            }
             // Fall through to parse as name.
         }
 
@@ -38,5 +42,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
         }
     }
-
+    private boolean isNumeric(String value) {
+        return value.matches("[+-]?\\d+");
+    }
 }

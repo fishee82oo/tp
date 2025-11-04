@@ -30,7 +30,7 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Contact: \n%1$s";
     public static final String MESSAGE_MULTIPLE_PERSONS_WITH_NAME =
-            "Multiple contacts named %1$s found. Please specify the index to delete.";
+            "Multiple contacts named %1$s found. Please specify the index to delete, e.g. delete 1";
 
     private final Name targetName;
     private final Index targetIndex;
