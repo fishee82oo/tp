@@ -756,12 +756,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
-2.  Should be able to hold up to 1000 contacts without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  Should work offline without a need for an external database server.
-5.  Data should be stored in a human editable text file to allow advanced users to manipulate the data directly through the data file.
-6.  Should be portable without the need for an installer.
+1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed
+2.  Should be able to hold up to 1000 contacts without a noticeable sluggishness in performance for typical usage
+3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse
+4.  Should work offline without a need for an external database server
+5.  Data should be stored in a human editable text file to allow advanced users to manipulate the data directly through the data file
+6.  Should be portable without the need for an installer
 7.  System must ensure that long term data is not lost unexpectedly, even in cases of abrupt shutdowns or crashes
 8.  Automated Testing should cover all core functionality implementations
 9.  Error messages should be prominent and usually provide specific information regarding the issue
