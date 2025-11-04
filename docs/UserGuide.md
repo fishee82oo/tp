@@ -169,7 +169,7 @@ __Lets Start Fresh!__
 
 **All Command Words are in Lower-Case**
 * Command words are case-sensitive and only lower-case will be accepted.<br>
-  Example: 'Add' will be an unknown command while 'add' is accepted.
+  Example: `Add` will be an unknown command while `add` is accepted.
 
 **Extra Words Get Ignored**
 * For simple commands like `help`, `list` and `exit`, anything extra you type will be ignored.<br>
