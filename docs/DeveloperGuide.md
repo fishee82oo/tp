@@ -1106,3 +1106,9 @@ Some errors from the filter command can be made more specific. We plan to make t
 
 2. **Sort only by the filtered list.**
 The `sort` command currently acts on the global list and not the currently filtered list shown to the user. We plan to modify it such that the `sort` command only sorts the currently filtered list.
+
+3. **Allow `+` in phone number to represent the region code.**
+   Enable the `+` symbol at the start of a phone number (e.g., `+65`) to represent the country code for better international compatibility.
+
+4. **Add fields optionally.**
+Make fields like `email` and `company` optional during contact creation, allowing users to add them later via the edit command for more flexibility.
