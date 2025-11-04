@@ -484,7 +484,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 1.
 
 
-* 1b. The given number already exists.
+* 1b. The number + name combination already exists.
 
    *  1b1. System shows an error message.
 

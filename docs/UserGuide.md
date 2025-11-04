@@ -167,6 +167,10 @@ __Lets Start Fresh!__
     * `addbasic n/John Doe p/91234567`
     * `addbasic p/91234567 n/John Doe`
 
+**All Command Words are in Lower-Case**
+* Command words are case-sensitive and only lower-case will be accepted.<br>
+  Example: 'Add' will be an unknown command while 'add' is accepted.
+
 **Extra Words Get Ignored**
 * For simple commands like `help`, `list` and `exit`, anything extra you type will be ignored.<br>
   Example: Typing `help 123` or `help please` both just run `help`.
