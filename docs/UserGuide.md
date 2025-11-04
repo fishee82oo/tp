@@ -256,6 +256,8 @@ Quickly saves a contact with just their name and phone number - perfect when you
     * Note: The `/` character is **not supported** to accommodate official namings such as `Rahul s/o Kumar`.
     * Instead, you may use `.` or `-` in names if needed (e.g. `Rahul s.o. Kumar`, `Tan-Kumar`).
 * **Phone** (`p/`) - At least 3 digits, at most 20 digits
+  * If the phone number includes a region or country code, please represent the code using **three digits** 
+  * Example: `p/0658888000` means the added phone with region code `+65` from Singapore
 
 **What you need to know:**
   * The combination of name **AND** phone number must be unique, you can't add two people with the same name and phone number combination
@@ -318,6 +320,8 @@ Adds a contact with full information including name, phone, email, company, and 
     * Note: The `/` character is **not supported** to accommodate official namings such as `Rahul s/o Kumar`.
     * Instead, you may use `.` or `-` in names if needed (e.g. `Rahul s.o. Kumar`, `Tan-Kumar`).
   * **Phone** (`p/`) - At least 3 digits, at most 20 digits
+    * If the phone number includes a region or country code, please represent the code using **three digits**
+    * Example: `p/0658888000` means the added phone with region code `+65` from Singapore
   * **Email** (`e/`) - Valid email address (e.g., name@company.com)
     * We **do not recommend** entering `unknown@example.com` because it is a reserved keyword and may cause unintended effects — see more details in [Known Issues](#placeholder-values-hide-email-or-company-fields).
     * If you enter that specific value, you will not see the field in your FastCard interface.
@@ -330,6 +334,10 @@ Adds a contact with full information including name, phone, email, company, and 
   * Each email address must be unique across all contacts (except for placeholder emails like `unknown@example.com`)
   * All fields except tags are required
   * Add multiple tags by repeating `t/` (e.g., `t/client t/priority`)
+  * If you want to include remarks or detailed notes (using the `d/` prefix), please do so after the contact has been created via the `edit`
+    command
+    * This design helps minimize typing during contact creation, especially for add when you have multiple input fields
+    * Once the contact is confirmed to be valid, you can conveniently add extra details like notes or descriptions through `edit`
 
 **When to use this:**
   * You have all contact information ready to enter.
@@ -606,7 +614,7 @@ You can search by name, company, or both at the same time.
 * Supports **partial (substring)** matches of **name** – typing `Han` will find `Hans` or `Hannah`
 * Supports **keyword** matches of **company** - typing `Google` will find `Google` and `Google SG`
 * Both name and company searches can be combined (logical **AND**)
-    * `find n/Alice c/NUS` → finds contacts whose **name contains “Alice”** **and** whose **company contains “NUS”**
+    * `find n/Alice c/NUS` → finds contacts whose **name contains “Alice”** **AND** her **company contains “NUS”**
 * If only one prefix is provided, only that field is searched
 * The number of matching contacts will be displayed after searching
 * **Duplicate search is not allowed**
