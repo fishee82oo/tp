@@ -1118,4 +1118,4 @@ Enable the `+` symbol at the start of a phone number (e.g., `+65`) to represent 
 Make fields like `email` and `company` optional during contact creation, allowing users to add them later via the edit command for more flexibility.
 
 5. **Enforce consistent name prefix requirement.**
-`delete` and `edit` accept bare names now (e.g. `delete Alice Pauline`) while find requires prefix (e.g. `find n/Alice`). Will ensure app-wise prefix requirement on name.
+`delete` and `edit` accept bare names now (e.g. `delete Alice Pauline`) while `find` requires prefix (e.g. `find n/Alice`). Will ensure app-wise prefix requirement on name.
